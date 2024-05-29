@@ -8,6 +8,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.White,
   },
+  contentView: {
+    width: '90%',
+    alignSelf: 'center',
+  },
   LoginImageViewContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
@@ -63,6 +67,12 @@ const styles = StyleSheet.create({
   CloseIconView: {
     width: '15%',
     alignItems: 'center',
+  },
+  closeIcon: {
+    width: 18,
+    height: 18,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   CountryCodeText: {
     fontSize: 14,
@@ -124,6 +134,12 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     justifyContent: 'center',
   },
+  socialIcon: {
+    width: 20,
+    height: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   PoliciesAndTermsView: {
     width: '80%',
     alignSelf: 'center',
@@ -134,6 +150,7 @@ const styles = StyleSheet.create({
   PoliciesAndTermsText: {
     textAlign: 'center',
     lineHeight: 19.4,
+    color: COLORS.DarkGrey,
   },
   LinksText: {
     fontWeight: 'bold',
@@ -204,6 +221,35 @@ const styles = StyleSheet.create({
     fontSize: 13,
     textAlign: 'center',
     color: COLORS.Primary,
+  },
+
+  // Welcome
+  welcomeTopView: {
+    height: '70%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  welcomeBottomView: {
+    height: '30%',
+    paddingBottom: 10,
+    justifyContent: 'flex-end',
+  },
+  welcomeTextContainerView: {
+    justifyContent: 'center',
+  },
+  welcomeTitleText: {
+    fontSize: 16,
+    color: '#4E4C4C',
+    marginVertical: 15,
+    fontWeight: '500',
+  },
+  welcomeDescriptionText: {
+    width: '70%',
+    fontSize: 28,
+    color: COLORS.Black,
+    marginVertical: 10,
+    fontWeight: 'bold',
+    lineHeight: 37,
   },
 });
 

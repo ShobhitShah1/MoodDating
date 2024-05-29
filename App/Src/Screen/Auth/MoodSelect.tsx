@@ -1,106 +1,166 @@
-/* eslint-disable react-native/no-inline-styles */
-import React, {useRef} from 'react';
-import {View, Text, StyleSheet, Animated, Dimensions} from 'react-native';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useCallback, useEffect, useRef, useState} from 'react';
+import {
+  Animated,
+  Dimensions,
+  FlatList,
+  LayoutAnimation,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  UIManager,
+  View,
+} from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {COLORS} from '../../Theme/Theme';
+import ButtonView from '../../Common/ButtonView';
+import useCustomNavigation from '../../Routes/useCustomNavigation';
+import {moods} from '../../Store/Data/LocalData';
+import {COLORS, SIZE} from '../../Theme/Theme';
+import {MoodDataProps} from '../../Types/Interfaces';
+import InsetShadow from 'react-native-inset-shadow';
 
-const {width, height} = Dimensions.get('window');
+const {width} = Dimensions.get('window');
 
-const ITEM_SIZE = width * 0.3;
+const ITEM_SIZE = width * 0.16;
 const SPACING = (width - ITEM_SIZE) / 2;
 const ITEM_MARGIN_RIGHT = 20;
+const TOP_VIEW_SIZE = 130;
 
-const MoodSelect = () => {
+if (Platform.OS === 'android') {
+  if (UIManager.setLayoutAnimationEnabledExperimental) {
+    UIManager.setLayoutAnimationEnabledExperimental(true);
+  }
+}
+
+const AnimatedList = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
-
-  const BACKGROUND_COLORS = [
-    'black',
-    '#ADFF2F',
-    '#CD853F',
-    '#4682B4',
-    '#3CB371',
-    'red',
-    'green',
-  ];
-
-  const backgroundColor = scrollX.interpolate({
-    inputRange: BACKGROUND_COLORS.map((_, index) => index * width),
-    outputRange: BACKGROUND_COLORS,
-    extrapolate: 'clamp',
-  });
-
+  const [currentValue, setCurrentValue] = useState(moods[2]);
   const currentIndex = useRef(0);
+  const flatListRef = useRef<FlatList<MoodDataProps>>(null);
+  const navigation = useCustomNavigation();
 
-  scrollX.addListener(({value}) => {
-    currentIndex.current = Math.round(value / (ITEM_SIZE + ITEM_MARGIN_RIGHT));
-    // console.log('Current index:', currentIndex.current);
-  });
+  const handleScroll = useCallback(
+    Animated.event([{nativeEvent: {contentOffset: {x: scrollX}}}], {
+      useNativeDriver: true,
+    }),
+    [scrollX],
+  );
+
+  useEffect(() => {
+    const listener = scrollX.addListener(({value}) => {
+      currentIndex.current = Math.round(
+        value / (ITEM_SIZE + ITEM_MARGIN_RIGHT),
+      );
+      requestAnimationFrame(() =>
+        LayoutAnimation.configureNext(LayoutAnimation.Presets.linear),
+      );
+      setCurrentValue(moods[currentIndex.current]);
+    });
+    return () => {
+      scrollX.removeListener(listener);
+    };
+  }, [scrollX]);
+
+  const renderMoodView = useCallback(
+    ({item, index}: {item: MoodDataProps; index: number}) => {
+      const {emoji} = item;
+      const inputRange = [
+        (index - 1) * (ITEM_SIZE + ITEM_MARGIN_RIGHT),
+        index * (ITEM_SIZE + ITEM_MARGIN_RIGHT),
+        (index + 1) * (ITEM_SIZE + ITEM_MARGIN_RIGHT),
+      ];
+
+      const translateY = scrollX.interpolate({
+        inputRange,
+        outputRange: [0, -32, 0],
+      });
+
+      return (
+        <Animated.View
+          style={[
+            styles.item,
+            {
+              transform: [{translateY}],
+              backgroundColor: item.primaryColor,
+            },
+          ]}>
+          <Text style={styles.text}>{emoji}</Text>
+        </Animated.View>
+      );
+    },
+    [scrollX],
+  );
+
+  const scrollToIndex = (index: number) => {
+    if (flatListRef.current) {
+      flatListRef.current.scrollToIndex({index, animated: false});
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topView}>
-        <Text>{'Hello'}</Text>
+        <TouchableOpacity
+          activeOpacity={1}
+          onLongPress={() =>
+            scrollToIndex(Math.floor(Math.random() * moods.length))
+          }
+          style={styles.topViewWrapper}>
+          <View
+            style={[
+              styles.topEmojiViewStyle,
+              {backgroundColor: currentValue.primaryColor},
+            ]}>
+            <Text style={styles.topEmojiText}>{currentValue.emoji}</Text>
+          </View>
+
+          <Text style={styles.howYouFeelingTodayText}>
+            {'How are you feeling today?'}
+          </Text>
+          <Text style={[styles.moodText, {color: currentValue.primaryColor}]}>
+            {currentValue.name}
+          </Text>
+        </TouchableOpacity>
       </View>
 
-      <Animated.FlatList
-        horizontal
-        onScroll={Animated.event(
-          [{nativeEvent: {contentOffset: {x: scrollX}}}],
-          {useNativeDriver: true},
-        )}
-        contentContainerStyle={{
-          paddingHorizontal: SPACING,
-        }}
-        style={[styles.bottomContainer, {backgroundColor}]}
-        onScrollToIndexFailed={() => {}}
-        snapToInterval={ITEM_SIZE + ITEM_MARGIN_RIGHT}
-        scrollEventThrottle={16}
-        showsHorizontalScrollIndicator={false}
-        data={[0, 0, 0, 0, 0, 0, 0]}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({index}) => {
-          const inputRange = [
-            (index - 1) * (ITEM_SIZE + ITEM_MARGIN_RIGHT),
-            index * (ITEM_SIZE + ITEM_MARGIN_RIGHT),
-            (index + 1) * (ITEM_SIZE + ITEM_MARGIN_RIGHT),
-          ];
+      <View style={styles.bottomView}>
+        <View>
+          <Animated.FlatList
+            data={moods}
+            ref={flatListRef}
+            horizontal={true}
+            pagingEnabled={true}
+            renderItem={renderMoodView}
+            onScroll={handleScroll}
+            scrollEventThrottle={16}
+            onScrollToIndexFailed={() => {}}
+            showsHorizontalScrollIndicator={false}
+            contentContainerStyle={styles.flatListContent}
+            snapToInterval={ITEM_SIZE + ITEM_MARGIN_RIGHT}
+            keyExtractor={(item, index) => index.toString()}
+          />
 
-          const translateY = scrollX.interpolate({
-            inputRange,
-            outputRange: [0, -50, 0],
-          });
+          <ButtonView
+            title="Continue"
+            ContainerStyle={[styles.ButtonStyle, {}]}
+            onPress={() => navigation.navigate('MoodSelect')}
+            TextStyle={styles.ButtonTextStyle}
+          />
+        </View>
+      </View>
 
-          return (
-            <View
-              style={{
-                width: ITEM_SIZE,
-                marginRight: ITEM_MARGIN_RIGHT,
-                marginTop: ITEM_SIZE / 2,
-              }}>
-              <Animated.View style={[styles.item, {transform: [{translateY}]}]}>
-                <Text style={styles.text}>Item: {index + 1}</Text>
-              </Animated.View>
-            </View>
-          );
-        }}
-      />
       <LinearGradient
         start={{x: 0, y: 1}}
         end={{x: 0, y: 0}}
         colors={[
-          'rgba(0,0,0,0.8)',
-          'rgba(0,0,0,0.3)',
+          currentValue.primaryColor,
+          currentValue.lightColor,
           'rgba(0,0,0,0.1)',
           'transparent',
         ]}
-        style={{
-          height: '60%',
-          position: 'absolute',
-          bottom: 0,
-          // zIndex: 999,
-          width: '100%',
-        }}
+        style={styles.gradient}
       />
     </SafeAreaView>
   );
@@ -109,36 +169,89 @@ const MoodSelect = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
     backgroundColor: COLORS.White,
   },
   topView: {
-    height: '40%',
+    height: '50%',
     justifyContent: 'center',
   },
-  bottomContainer: {
-    height: '60%',
+  bottomView: {
+    height: '50%',
+    flexGrow: 1,
+    justifyContent: 'center',
+  },
+  flatListContent: {
+    margin: 0,
+    padding: 0,
+    height: 250,
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingHorizontal: SPACING,
   },
   item: {
     width: ITEM_SIZE,
     height: ITEM_SIZE,
-    borderRadius: 10,
+    borderRadius: 15,
     alignItems: 'center',
     backgroundColor: 'blue',
     justifyContent: 'center',
+    marginRight: ITEM_MARGIN_RIGHT,
   },
   text: {
-    fontSize: 16,
+    fontSize: ITEM_SIZE / 1.5,
     color: 'white',
     fontWeight: 'bold',
   },
-  background: {
-    top: 0,
-    left: 0,
-    right: 0,
-    height: height,
+  topEmojiViewStyle: {
+    width: TOP_VIEW_SIZE,
+    height: TOP_VIEW_SIZE,
+    zIndex: 9999,
+    borderRadius: 25,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: COLORS.White,
+  },
+  topEmojiText: {
+    color: COLORS.Black,
+    textAlign: 'center',
+    fontSize: TOP_VIEW_SIZE / 1.6,
+  },
+  moodText: {
+    fontSize: 40,
+    marginVertical: 10,
+    color: COLORS.Black,
+    textAlign: 'center',
+    fontWeight: 'bold',
+  },
+  gradient: {
+    zIndex: -1,
+    bottom: 0,
+    height: '80%',
+    width: '100%',
     position: 'absolute',
+  },
+  topViewWrapper: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  howYouFeelingTodayText: {
+    marginTop: 25,
+    marginVertical: 10,
+  },
+  ButtonStyle: {
+    width: '90%',
+    height: 50,
+    marginVertical: 20,
+    backgroundColor: COLORS.Primary,
+    borderRadius: SIZE.borderRadius,
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+  },
+  ButtonTextStyle: {
+    color: COLORS.White,
+    fontSize: 17,
   },
 });
 
-export default MoodSelect;
+export default AnimatedList;

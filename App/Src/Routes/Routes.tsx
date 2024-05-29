@@ -6,12 +6,14 @@ import Otp from '../Screen/Auth/Otp';
 import {RootStackParamList, screenOptions} from '../Types/Interfaces';
 import {navigationRef} from './NavigationRef';
 import MoodSelect from '../Screen/Auth/MoodSelect';
+import Welcome from '../Screen/Auth/Welcome';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 const AuthStack = () => {
   return (
     <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Screen name="Welcome" component={Welcome} />
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="Otp" component={Otp} />
       <Stack.Screen name="MoodSelect" component={MoodSelect} />

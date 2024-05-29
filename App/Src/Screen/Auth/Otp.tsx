@@ -60,7 +60,7 @@ const Otp = () => {
               styles.ButtonStyle,
               {
                 marginTop: 10,
-                marginBottom: 20,
+                marginBottom: 30,
               },
             ]}
             onPress={() => navigation.navigate('MoodSelect')}

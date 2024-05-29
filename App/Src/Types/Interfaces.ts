@@ -8,6 +8,7 @@ declare global {
 }
 
 export type RootStackParamList = {
+  Welcome: undefined;
   AuthStack:
     | {
         screen?: 'Login' | 'Otp' | 'MoodSelect';
@@ -37,6 +38,13 @@ export interface ButtonProps {
 
 export interface AuthHeaderProps {
   onBackPress: () => void;
+}
+
+export interface MoodDataProps {
+  name: string;
+  emoji: string;
+  primaryColor: string;
+  lightColor: string;
 }
 
 export interface TextInputProps extends RNTextInputProps {}

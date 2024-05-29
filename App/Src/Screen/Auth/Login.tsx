@@ -11,7 +11,7 @@ import {
   TouchableWithoutFeedback,
   View,
 } from 'react-native';
-import {ImagesPath} from '../../Common/AssetsPath';
+import {IconsPath, ImagesPath} from '../../Common/AssetsPath';
 import ButtonView from '../../Common/ButtonView';
 import useCustomNavigation from '../../Routes/useCustomNavigation';
 import {COLORS} from '../../Theme/Theme';
@@ -62,7 +62,7 @@ const Login = () => {
                 />
               </View>
               <View style={styles.CloseIconView}>
-                <Text>Close Icon</Text>
+                <Image source={IconsPath.ic_cancel} style={styles.closeIcon} />
               </View>
             </View>
 
@@ -81,7 +81,6 @@ const Login = () => {
 
             <View style={styles.SocialButtonContainer}>
               <ButtonView
-                title="Google"
                 ContainerStyle={[
                   styles.SocialButton,
                   {
@@ -89,10 +88,15 @@ const Login = () => {
                   },
                 ]}
                 onPress={() => {}}
+                children={
+                  <Image
+                    source={IconsPath.ic_google}
+                    style={styles.socialIcon}
+                  />
+                }
                 TextStyle={styles.ButtonTextStyle}
               />
               <ButtonView
-                title="FaceBook"
                 ContainerStyle={[
                   styles.SocialButton,
                   {
@@ -100,8 +104,12 @@ const Login = () => {
                   },
                 ]}
                 onPress={() => {}}
-                TextStyle={styles.ButtonTextStyle}
-              />
+                TextStyle={styles.ButtonTextStyle}>
+                <Image
+                  source={IconsPath.ic_facebook}
+                  style={styles.socialIcon}
+                />
+              </ButtonView>
             </View>
 
             <View style={styles.PoliciesAndTermsView}>
