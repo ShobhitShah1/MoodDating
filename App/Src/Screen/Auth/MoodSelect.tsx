@@ -19,7 +19,7 @@ import useCustomNavigation from '../../Routes/useCustomNavigation';
 import {moods} from '../../Store/Data/LocalData';
 import {COLORS, SIZE} from '../../Theme/Theme';
 import {MoodDataProps} from '../../Types/Interfaces';
-import InsetShadow from 'react-native-inset-shadow';
+import TextString from '../../Common/TestString';
 
 const {width} = Dimensions.get('window');
 
@@ -36,7 +36,7 @@ if (Platform.OS === 'android') {
 
 const AnimatedList = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
-  const [currentValue, setCurrentValue] = useState(moods[2]);
+  const [currentValue, setCurrentValue] = useState(moods[0]);
   const currentIndex = useRef(0);
   const flatListRef = useRef<FlatList<MoodDataProps>>(null);
   const navigation = useCustomNavigation();
@@ -93,21 +93,10 @@ const AnimatedList = () => {
     [scrollX],
   );
 
-  const scrollToIndex = (index: number) => {
-    if (flatListRef.current) {
-      flatListRef.current.scrollToIndex({index, animated: false});
-    }
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.topView}>
-        <TouchableOpacity
-          activeOpacity={1}
-          onLongPress={() =>
-            scrollToIndex(Math.floor(Math.random() * moods.length))
-          }
-          style={styles.topViewWrapper}>
+        <TouchableOpacity activeOpacity={1} style={styles.topViewWrapper}>
           <View
             style={[
               styles.topEmojiViewStyle,
@@ -117,7 +106,7 @@ const AnimatedList = () => {
           </View>
 
           <Text style={styles.howYouFeelingTodayText}>
-            {'How are you feeling today?'}
+            {TextString.HowAreYouFeelingToday}
           </Text>
           <Text style={[styles.moodText, {color: currentValue.primaryColor}]}>
             {currentValue.name}
@@ -143,7 +132,7 @@ const AnimatedList = () => {
           />
 
           <ButtonView
-            title="Continue"
+            title={TextString.Continue}
             ContainerStyle={[styles.ButtonStyle, {}]}
             onPress={() => navigation.navigate('MoodSelect')}
             TextStyle={styles.ButtonTextStyle}

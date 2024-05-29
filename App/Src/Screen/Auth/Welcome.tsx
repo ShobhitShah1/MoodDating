@@ -5,6 +5,7 @@ import styles from './Styles';
 import ButtonView from '../../Common/ButtonView';
 import useCustomNavigation from '../../Routes/useCustomNavigation';
 import {COLORS} from '../../Theme/Theme';
+import TextString from '../../Common/TestString';
 
 const Welcome = () => {
   const navigation = useCustomNavigation();
@@ -17,14 +18,16 @@ const Welcome = () => {
 
         <View style={styles.welcomeBottomView}>
           <View style={styles.welcomeTextContainerView}>
-            <Text style={styles.welcomeTitleText}>{'Let’s get closer 😊'}</Text>
+            <Text style={styles.welcomeTitleText}>
+              {TextString.LetsGetCloser}
+            </Text>
             <Text style={styles.welcomeDescriptionText}>
-              {'The best place to meet your future partner.'}
+              {TextString.TheBestPlaceToMeet}
             </Text>
           </View>
 
           <ButtonView
-            title="Get started"
+            title={TextString.GetStarted}
             ContainerStyle={[
               styles.ButtonStyle,
               {

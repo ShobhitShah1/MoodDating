@@ -6,6 +6,7 @@ import useCustomNavigation from '../../Routes/useCustomNavigation';
 import AuthHeader from './Components/AuthHeader';
 import styles from './Styles';
 import ButtonView from '../../Common/ButtonView';
+import TextString from '../../Common/TestString';
 
 const Otp = () => {
   const navigation = useCustomNavigation();
@@ -49,13 +50,13 @@ const Otp = () => {
         <View>
           <View style={styles.bottomTextView}>
             <Text style={styles.donNotHaveCodeText}>
-              {'Didn’t you received any code?'}
+              {TextString.NotReceivedCode}
             </Text>
-            <Text style={styles.resendOTPtext}>{'Resend a new code.'}</Text>
+            <Text style={styles.resendOTPtext}>{TextString.ResendNewCode}</Text>
           </View>
 
           <ButtonView
-            title="Verify"
+            title={TextString.Verify}
             ContainerStyle={[
               styles.ButtonStyle,
               {

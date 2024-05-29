@@ -16,6 +16,7 @@ import ButtonView from '../../Common/ButtonView';
 import useCustomNavigation from '../../Routes/useCustomNavigation';
 import {COLORS} from '../../Theme/Theme';
 import styles from './Styles';
+import TextString from '../../Common/TestString';
 
 const Login = () => {
   const navigation = useCustomNavigation();
@@ -34,7 +35,9 @@ const Login = () => {
                 style={styles.HeartImageView}
                 source={ImagesPath.LoginScreenHeart}
               />
-              <Text style={styles.LoginTitleText}>Login to a lovely life.</Text>
+              <Text style={styles.LoginTitleText}>
+                {TextString.LoginToALovelyLife}
+              </Text>
             </View>
             <View style={styles.CoupleImageContainer}>
               <Image
@@ -46,7 +49,7 @@ const Login = () => {
 
           <View style={styles.NumberContentView}>
             <Text style={styles.EnterNumberTitleText}>
-              Enter your mobile number
+              {TextString.EnterYourMobileNumber}
             </Text>
             <View style={styles.NumberInputFlexView}>
               <View style={styles.CountryCodeView}>
@@ -57,7 +60,7 @@ const Login = () => {
                   style={styles.TextInputStyle}
                   keyboardType="number-pad"
                   keyboardAppearance="light"
-                  placeholder="Enter Phone Number"
+                  placeholder={TextString.EnterPhoneNumber}
                   placeholderTextColor={COLORS.PlaceholderText}
                 />
               </View>
@@ -67,7 +70,7 @@ const Login = () => {
             </View>
 
             <ButtonView
-              title="Continue"
+              title={TextString.Continue}
               ContainerStyle={styles.ButtonStyle}
               onPress={() => navigation.navigate('Otp')}
               TextStyle={styles.ButtonTextStyle}
@@ -75,7 +78,7 @@ const Login = () => {
 
             <View style={styles.OrView}>
               <View style={styles.OrLineView} />
-              <Text style={styles.OrText}>Or</Text>
+              <Text style={styles.OrText}>{TextString.Or}</Text>
               <View style={styles.OrLineView} />
             </View>
 
@@ -83,25 +86,16 @@ const Login = () => {
               <ButtonView
                 ContainerStyle={[
                   styles.SocialButton,
-                  {
-                    borderColor: COLORS.GoogleColor,
-                  },
+                  {borderColor: COLORS.GoogleColor},
                 ]}
                 onPress={() => {}}
-                children={
-                  <Image
-                    source={IconsPath.ic_google}
-                    style={styles.socialIcon}
-                  />
-                }
-                TextStyle={styles.ButtonTextStyle}
-              />
+                TextStyle={styles.ButtonTextStyle}>
+                <Image source={IconsPath.ic_google} style={styles.socialIcon} />
+              </ButtonView>
               <ButtonView
                 ContainerStyle={[
                   styles.SocialButton,
-                  {
-                    borderColor: COLORS.FacebookColor,
-                  },
+                  {borderColor: COLORS.FacebookColor},
                 ]}
                 onPress={() => {}}
                 TextStyle={styles.ButtonTextStyle}>
@@ -114,13 +108,13 @@ const Login = () => {
 
             <View style={styles.PoliciesAndTermsView}>
               <Text style={styles.PoliciesAndTermsText}>
-                By continue to login, you accept our company’s{' '}
+                {TextString.ByContinueToLogin}{' '}
                 <Text style={[styles.LinksText, {color: COLORS.Black}]}>
-                  Terms & condition
+                  {TextString.TermsAndCondition}
                 </Text>{' '}
-                and{' '}
+                {TextString.And}{' '}
                 <Text style={[styles.LinksText, {color: COLORS.Black}]}>
-                  Privacy Policies
+                  {TextString.PrivacyPolicies}
                 </Text>
                 .
               </Text>
