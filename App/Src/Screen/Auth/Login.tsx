@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import {IconsPath, ImagesPath} from '../../Common/AssetsPath';
 import ButtonView from '../../Common/ButtonView';
-import useCustomNavigation from '../../Routes/useCustomNavigation';
+import useCustomNavigation from '../../Routes/Helpers/useCustomNavigation';
 import {COLORS} from '../../Theme/Theme';
 import styles from './Styles';
 import TextString from '../../Common/TestString';

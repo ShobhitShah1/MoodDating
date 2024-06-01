@@ -10,13 +10,15 @@ const ButtonView: FC<ButtonProps> = ({
   ContainerStyle,
   TextStyle,
   children,
+  ...props
 }) => {
   return (
     <TouchableOpacity
       activeOpacity={SIZE.activeOpacity}
       style={ContainerStyle}
       disabled={disable}
-      onPress={onPress}>
+      onPress={onPress}
+      {...props}>
       {title ? <Text style={TextStyle}>{title}</Text> : children}
     </TouchableOpacity>
   );

@@ -2,7 +2,7 @@
 import React, {useState} from 'react';
 import {SafeAreaView, ScrollView, Text, View} from 'react-native';
 import OTPInput from '../../Components/OTPInput';
-import useCustomNavigation from '../../Routes/useCustomNavigation';
+import useCustomNavigation from '../../Routes/Helpers/useCustomNavigation';
 import AuthHeader from './Components/AuthHeader';
 import styles from './Styles';
 import ButtonView from '../../Common/ButtonView';
@@ -11,6 +11,7 @@ import TextString from '../../Common/TestString';
 const Otp = () => {
   const navigation = useCustomNavigation();
   const [OTPValue, setOTPValue] = useState('');
+
   return (
     <SafeAreaView style={styles.Container}>
       <AuthHeader onBackPress={() => navigation.goBack()} />

@@ -8,5 +8,8 @@ export const IconsPath = {
   ic_cancel: require('../../Assets/Icons/ic_cancel.png'),
   ic_facebook: require('../../Assets/Icons/ic_facebook.png'),
   ic_google: require('../../Assets/Icons/ic_google.png'),
+  ic_home: require('../../Assets/Icons/ic_home.png'),
+  ic_chat: require('../../Assets/Icons/ic_chat.png'),
+  ic_swipeCard: require('../../Assets/Icons/ic_swipeCard.png'),
 };
 export default {ImagesPath, IconsPath};

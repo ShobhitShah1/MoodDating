@@ -1,5 +1,9 @@
 import {NativeStackNavigationOptions} from '@react-navigation/native-stack';
-import {TextInputProps as RNTextInputProps, ViewStyle} from 'react-native';
+import {
+  TextInputProps as RNTextInputProps,
+  TouchableOpacityProps,
+  ViewStyle,
+} from 'react-native';
 
 declare global {
   namespace ReactNavigation {
@@ -17,6 +21,16 @@ export type RootStackParamList = {
   Login: undefined;
   Otp: undefined;
   MoodSelect: undefined;
+  BottomTab:
+    | {
+        screen?: 'Home' | 'Cards' | 'Chat' | 'Profile';
+      }
+    | undefined;
+  Home: undefined;
+  Cards: undefined;
+  Likes: undefined;
+  Chat: undefined;
+  Profile: undefined;
 };
 
 export const screenOptions: NativeStackNavigationOptions = {
@@ -27,7 +41,7 @@ export const screenOptions: NativeStackNavigationOptions = {
   // navigationBarColor: COLORS.Primary,
 };
 
-export interface ButtonProps {
+export interface ButtonProps extends TouchableOpacityProps {
   title?: string;
   onPress: () => void;
   disable?: boolean;

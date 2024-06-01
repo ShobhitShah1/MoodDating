@@ -8,6 +8,7 @@ export const COLORS = {
   DarkGrey: 'rgba(108,108,108,1)',
   GoogleColor: 'rgba(241,67,54,1)',
   FacebookColor: 'rgba(8,102,255,1)',
+  MoodSelectSubText: '#7C7979',
 };
 
 export const SIZE = {

@@ -4,9 +4,10 @@ import React from 'react';
 import Login from '../Screen/Auth/Login';
 import Otp from '../Screen/Auth/Otp';
 import {RootStackParamList, screenOptions} from '../Types/Interfaces';
-import {navigationRef} from './NavigationRef';
+import {navigationRef} from './Helpers/NavigationRef';
 import MoodSelect from '../Screen/Auth/MoodSelect';
 import Welcome from '../Screen/Auth/Welcome';
+import BottomTabRoutes from './BottomTabRoutes';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -26,6 +27,7 @@ const Routes = () => {
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator screenOptions={screenOptions}>
         <Stack.Screen name="AuthStack" component={AuthStack} />
+        <Stack.Screen name="BottomTab" component={BottomTabRoutes} />
       </Stack.Navigator>
     </NavigationContainer>
   );

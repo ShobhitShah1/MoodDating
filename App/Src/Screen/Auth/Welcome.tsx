@@ -3,7 +3,7 @@ import React from 'react';
 import {Text, View} from 'react-native';
 import styles from './Styles';
 import ButtonView from '../../Common/ButtonView';
-import useCustomNavigation from '../../Routes/useCustomNavigation';
+import useCustomNavigation from '../../Routes/Helpers/useCustomNavigation';
 import {COLORS} from '../../Theme/Theme';
 import TextString from '../../Common/TestString';
 

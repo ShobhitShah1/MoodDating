@@ -5,6 +5,8 @@ import {
   Dimensions,
   FlatList,
   LayoutAnimation,
+  NativeScrollEvent,
+  NativeSyntheticEvent,
   Platform,
   StyleSheet,
   Text,
@@ -15,11 +17,11 @@ import {
 import LinearGradient from 'react-native-linear-gradient';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import ButtonView from '../../Common/ButtonView';
-import useCustomNavigation from '../../Routes/useCustomNavigation';
+import TextString from '../../Common/TestString';
+import useCustomNavigation from '../../Routes/Helpers/useCustomNavigation';
 import {moods} from '../../Store/Data/LocalData';
 import {COLORS, SIZE} from '../../Theme/Theme';
 import {MoodDataProps} from '../../Types/Interfaces';
-import TextString from '../../Common/TestString';
 
 const {width} = Dimensions.get('window');
 
@@ -28,15 +30,16 @@ const SPACING = (width - ITEM_SIZE) / 2;
 const ITEM_MARGIN_RIGHT = 20;
 const TOP_VIEW_SIZE = 130;
 
-if (Platform.OS === 'android') {
-  if (UIManager.setLayoutAnimationEnabledExperimental) {
-    UIManager.setLayoutAnimationEnabledExperimental(true);
-  }
+if (
+  Platform.OS === 'android' &&
+  UIManager.setLayoutAnimationEnabledExperimental
+) {
+  UIManager.setLayoutAnimationEnabledExperimental(true);
 }
 
-const AnimatedList = () => {
+const AnimatedList: React.FC = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
-  const [currentValue, setCurrentValue] = useState(moods[0]);
+  const [currentValue, setCurrentValue] = useState<MoodDataProps>(moods[0]);
   const currentIndex = useRef(0);
   const flatListRef = useRef<FlatList<MoodDataProps>>(null);
   const navigation = useCustomNavigation();
@@ -63,6 +66,45 @@ const AnimatedList = () => {
     };
   }, [scrollX]);
 
+  const getItemLayout = (_: any, index: number) => ({
+    length: ITEM_SIZE + ITEM_MARGIN_RIGHT,
+    offset: (ITEM_SIZE + ITEM_MARGIN_RIGHT) * index,
+    index,
+  });
+
+  const handleScrollToIndexFailed = (error: {
+    index: number;
+    highestMeasuredFrameIndex: number;
+    averageItemLength: number;
+  }) => {
+    const offset = error.index * (ITEM_SIZE + ITEM_MARGIN_RIGHT);
+    flatListRef.current?.scrollToOffset({offset, animated: true});
+    setTimeout(() => {
+      if (flatListRef.current !== null) {
+        flatListRef.current.scrollToIndex({index: error.index, animated: true});
+      }
+    }, 100);
+  };
+
+  const animatedScroll = (index: number) => {
+    flatListRef.current?.scrollToIndex({
+      index,
+      animated: true,
+      viewPosition: 0.5,
+    });
+  };
+
+  const handleMomentumScrollEnd = useCallback(
+    (event: NativeSyntheticEvent<NativeScrollEvent>) => {
+      const index = Math.round(
+        event.nativeEvent.contentOffset.x / (ITEM_SIZE + ITEM_MARGIN_RIGHT),
+      );
+      flatListRef.current?.scrollToIndex({index, animated: true});
+      setCurrentValue(moods[index]);
+    },
+    [],
+  );
+
   const renderMoodView = useCallback(
     ({item, index}: {item: MoodDataProps; index: number}) => {
       const {emoji} = item;
@@ -78,16 +120,15 @@ const AnimatedList = () => {
       });
 
       return (
-        <Animated.View
-          style={[
-            styles.item,
-            {
-              transform: [{translateY}],
-              backgroundColor: item.primaryColor,
-            },
-          ]}>
-          <Text style={styles.text}>{emoji}</Text>
-        </Animated.View>
+        <ButtonView activeOpacity={1} onPress={() => animatedScroll(index)}>
+          <Animated.View
+            style={[
+              styles.item,
+              {transform: [{translateY}], backgroundColor: item.primaryColor},
+            ]}>
+            <Text style={styles.text}>{emoji}</Text>
+          </Animated.View>
+        </ButtonView>
       );
     },
     [scrollX],
@@ -124,17 +165,20 @@ const AnimatedList = () => {
             renderItem={renderMoodView}
             onScroll={handleScroll}
             scrollEventThrottle={16}
-            onScrollToIndexFailed={() => {}}
+            decelerationRate="fast"
+            onMomentumScrollEnd={handleMomentumScrollEnd}
+            onScrollToIndexFailed={handleScrollToIndexFailed}
             showsHorizontalScrollIndicator={false}
             contentContainerStyle={styles.flatListContent}
             snapToInterval={ITEM_SIZE + ITEM_MARGIN_RIGHT}
+            getItemLayout={getItemLayout}
             keyExtractor={(item, index) => index.toString()}
           />
 
           <ButtonView
             title={TextString.Continue}
             ContainerStyle={[styles.ButtonStyle, {}]}
-            onPress={() => navigation.navigate('MoodSelect')}
+            onPress={() => navigation.navigate('BottomTab')}
             TextStyle={styles.ButtonTextStyle}
           />
         </View>
@@ -181,6 +225,7 @@ const styles = StyleSheet.create({
     width: ITEM_SIZE,
     height: ITEM_SIZE,
     borderRadius: 15,
+    alignSelf: 'center',
     alignItems: 'center',
     backgroundColor: 'blue',
     justifyContent: 'center',
@@ -224,8 +269,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   howYouFeelingTodayText: {
-    marginTop: 25,
-    marginVertical: 10,
+    marginTop: 35,
+    marginBottom: 25,
+    fontSize: 15,
+    fontWeight: '500',
+    textAlign: 'center',
+    color: COLORS.MoodSelectSubText,
   },
   ButtonStyle: {
     width: '90%',
