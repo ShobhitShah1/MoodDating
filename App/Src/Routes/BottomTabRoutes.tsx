@@ -66,6 +66,7 @@ const BottomTabRoutes: React.FC = () => (
     screenOptions={{
       tabBarStyle: styles.tabBarStyle,
       tabBarShowLabel: false,
+      headerShown: false,
     }}>
     {SCREENS.map(({name, component, icon}) => (
       <Tab.Screen
