@@ -13,5 +13,5 @@ export const COLORS = {
 
 export const SIZE = {
   activeOpacity: 0.8,
-  borderRadius: 10,
+  borderRadius: 20,
 };

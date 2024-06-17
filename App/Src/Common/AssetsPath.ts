@@ -1,6 +1,10 @@
 export const ImagesPath = {
+  AppLogo: require('../../Assets/Images/AppLogo.png'),
   LoginScreenCouple: require('../../Assets/Images/LoginScreenCouple.png'),
   LoginScreenHeart: require('../../Assets/Images/LoginScreenHeart.png'),
+  LoginBackground: require('../../Assets/Images/LoginBackground.jpg'),
+  SplashBackground: require('../../Assets/Images/SplashBackground.jpg'),
+  WelcomeBackground: require('../../Assets/Images/WelcomeBackground.jpg'),
 };
 
 export const IconsPath = {

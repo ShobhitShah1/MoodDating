@@ -4,6 +4,8 @@ import {
   Animated,
   Dimensions,
   FlatList,
+  Image,
+  ImageBackground,
   LayoutAnimation,
   NativeScrollEvent,
   NativeSyntheticEvent,
@@ -22,10 +24,11 @@ import useCustomNavigation from '../../Routes/Helpers/useCustomNavigation';
 import {moods} from '../../Store/Data/LocalData';
 import {COLORS, SIZE} from '../../Theme/Theme';
 import {MoodDataProps} from '../../Types/Interfaces';
+import {IconsPath, ImagesPath} from '../../Common/AssetsPath';
 
 const {width} = Dimensions.get('window');
 
-const ITEM_SIZE = width * 0.16;
+const ITEM_SIZE = width * 0.15;
 const SPACING = (width - ITEM_SIZE) / 2;
 const ITEM_MARGIN_RIGHT = 20;
 const TOP_VIEW_SIZE = 130;
@@ -136,65 +139,82 @@ const AnimatedList: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.topView}>
-        <TouchableOpacity activeOpacity={1} style={styles.topViewWrapper}>
-          <View
-            style={[
-              styles.topEmojiViewStyle,
-              {backgroundColor: currentValue.primaryColor},
-            ]}>
-            <Text style={styles.topEmojiText}>{currentValue.emoji}</Text>
-          </View>
-
-          <Text style={styles.howYouFeelingTodayText}>
-            {TextString.HowAreYouFeelingToday}
-          </Text>
-          <Text style={[styles.moodText, {color: currentValue.primaryColor}]}>
-            {currentValue.name}
-          </Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.bottomView}>
-        <View>
-          <Animated.FlatList
-            data={moods}
-            ref={flatListRef}
-            horizontal={true}
-            pagingEnabled={true}
-            renderItem={renderMoodView}
-            onScroll={handleScroll}
-            scrollEventThrottle={16}
-            decelerationRate="fast"
-            onMomentumScrollEnd={handleMomentumScrollEnd}
-            onScrollToIndexFailed={handleScrollToIndexFailed}
-            showsHorizontalScrollIndicator={false}
-            contentContainerStyle={styles.flatListContent}
-            snapToInterval={ITEM_SIZE + ITEM_MARGIN_RIGHT}
-            getItemLayout={getItemLayout}
-            keyExtractor={(item, index) => index.toString()}
-          />
-
+      <ImageBackground
+        style={styles.imageBackground}
+        blurRadius={50}
+        source={ImagesPath.SplashBackground}>
+        <View style={styles.headerContainer}>
           <ButtonView
-            title={TextString.Continue}
-            ContainerStyle={[styles.ButtonStyle, {}]}
-            onPress={() => navigation.navigate('BottomTab')}
-            TextStyle={styles.ButtonTextStyle}
-          />
+            ContainerStyle={styles.headerBackButtonView}
+            onPress={() => navigation.goBack()}>
+            <Image
+              tintColor={COLORS.White}
+              source={IconsPath.ic_back}
+              style={styles.headerBackIcon}
+            />
+          </ButtonView>
         </View>
-      </View>
 
-      <LinearGradient
-        start={{x: 0, y: 1}}
-        end={{x: 0, y: 0}}
-        colors={[
-          currentValue.primaryColor,
-          currentValue.lightColor,
-          'rgba(0,0,0,0.1)',
-          'transparent',
-        ]}
-        style={styles.gradient}
-      />
+        <View style={styles.topView}>
+          <TouchableOpacity activeOpacity={1} style={styles.topViewWrapper}>
+            <View
+              style={[
+                styles.topEmojiViewStyle,
+                {backgroundColor: currentValue.primaryColor},
+              ]}>
+              <Text style={styles.topEmojiText}>{currentValue.emoji}</Text>
+            </View>
+
+            <Text style={styles.howYouFeelingTodayText}>
+              {TextString.HowAreYouFeelingToday}
+            </Text>
+            <Text style={[styles.moodText, {color: currentValue.primaryColor}]}>
+              {currentValue.name}
+            </Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style={styles.bottomView}>
+          <View>
+            <Animated.FlatList
+              data={moods}
+              ref={flatListRef}
+              horizontal={true}
+              pagingEnabled={true}
+              renderItem={renderMoodView}
+              onScroll={handleScroll}
+              scrollEventThrottle={16}
+              decelerationRate="fast"
+              onMomentumScrollEnd={handleMomentumScrollEnd}
+              onScrollToIndexFailed={handleScrollToIndexFailed}
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={styles.flatListContent}
+              snapToInterval={ITEM_SIZE + ITEM_MARGIN_RIGHT}
+              getItemLayout={getItemLayout}
+              keyExtractor={(item, index) => index.toString()}
+            />
+
+            <ButtonView
+              title={TextString.Continue}
+              ContainerStyle={[styles.ButtonStyle, {}]}
+              onPress={() => navigation.navigate('BottomTab')}
+              TextStyle={styles.ButtonTextStyle}
+            />
+          </View>
+        </View>
+
+        <LinearGradient
+          start={{x: 0, y: 1}}
+          end={{x: 0, y: 0}}
+          colors={[
+            currentValue.primaryColor,
+            currentValue.lightColor,
+            'rgba(0,0,0,0.1)',
+            'transparent',
+          ]}
+          style={styles.gradient}
+        />
+      </ImageBackground>
     </SafeAreaView>
   );
 };
@@ -204,19 +224,27 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.White,
   },
+  imageBackground: {
+    flex: 1,
+    height: '100%',
+    justifyContent: 'space-between',
+  },
   topView: {
+    // backgroundColor: 'red',
     height: '50%',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
   },
   bottomView: {
-    height: '50%',
+    // height: '50%',
     flexGrow: 1,
-    justifyContent: 'center',
+    zIndex: 9999,
+    justifyContent: 'flex-end',
+    // justifyContent: 'center',
   },
   flatListContent: {
-    margin: 0,
-    padding: 0,
-    height: 250,
+    // margin: 0,
+    paddingVertical: 38,
+    // height: 250,
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: SPACING,
@@ -252,13 +280,13 @@ const styles = StyleSheet.create({
   },
   moodText: {
     fontSize: 40,
-    marginVertical: 10,
+    // marginVertical: 10,
     color: COLORS.Black,
     textAlign: 'center',
     fontWeight: 'bold',
   },
   gradient: {
-    zIndex: -1,
+    zIndex: 1,
     bottom: 0,
     height: '80%',
     width: '100%',
@@ -269,8 +297,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   howYouFeelingTodayText: {
-    marginTop: 35,
-    marginBottom: 25,
+    marginTop: 20,
+    marginBottom: 10,
     fontSize: 15,
     fontWeight: '500',
     textAlign: 'center',
@@ -279,7 +307,8 @@ const styles = StyleSheet.create({
   ButtonStyle: {
     width: '90%',
     height: 50,
-    marginVertical: 20,
+    marginBottom: 20,
+    marginTop: 15,
     backgroundColor: COLORS.Primary,
     borderRadius: SIZE.borderRadius,
     alignItems: 'center',
@@ -289,6 +318,26 @@ const styles = StyleSheet.create({
   ButtonTextStyle: {
     color: COLORS.White,
     fontSize: 17,
+  },
+  headerContainer: {
+    width: '90%',
+    height: 50,
+    marginTop: 10,
+    marginBottom: 5,
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+  headerBackButtonView: {
+    width: '10%',
+    height: 50,
+    // alignItems: 'center',
+    justifyContent: 'center',
+  },
+  headerBackIcon: {
+    width: 20,
+    height: 20,
+    resizeMode: 'contain',
+    justifyContent: 'center',
   },
 });
 

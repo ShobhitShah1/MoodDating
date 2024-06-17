@@ -2,7 +2,7 @@ export const TextString = {
   LetsGetCloser: 'Let’s get closer 😊',
   TheBestPlaceToMeet: 'The best place to meet your future partner.',
   GetStarted: 'Get started',
-  LoginToALovelyLife: 'Login to a lovely life.',
+  LoginToALovelyLife: 'Login to a lovely \nlife.',
   EnterYourMobileNumber: 'Enter your mobile number',
   EnterPhoneNumber: 'Enter Phone Number',
   Continue: 'Continue',

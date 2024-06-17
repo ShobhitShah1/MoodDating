@@ -8,6 +8,7 @@ import {navigationRef} from './Helpers/NavigationRef';
 import MoodSelect from '../Screen/Auth/MoodSelect';
 import Welcome from '../Screen/Auth/Welcome';
 import BottomTabRoutes from './BottomTabRoutes';
+import Splash from '../Screen/Splash';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -26,6 +27,7 @@ const Routes = () => {
   return (
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator screenOptions={screenOptions}>
+        <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="AuthStack" component={AuthStack} />
         <Stack.Screen name="BottomTab" component={BottomTabRoutes} />
       </Stack.Navigator>
