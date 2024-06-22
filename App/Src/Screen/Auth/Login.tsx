@@ -24,7 +24,7 @@ const Login = () => {
   return (
     <SafeAreaView style={styles.Container}>
       <StatusBar
-        barStyle="dark-content"
+        barStyle="light-content"
         backgroundColor="transparent"
         translucent
       />

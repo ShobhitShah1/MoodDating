@@ -1,14 +1,30 @@
 import React from 'react';
-import {StyleSheet, View} from 'react-native';
+import {ImageBackground, StatusBar, StyleSheet, Text, View} from 'react-native';
 import HeaderView from './components/HeaderView';
+import {ImagesPath} from '../../Common/AssetsPath';
+import {COLORS} from '../../Theme/Theme';
 
 const Home = () => {
   return (
-    <View style={styles.container}>
+    <ImageBackground
+      style={styles.container}
+      source={ImagesPath.SplashBackground}
+      blurRadius={80}>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
       <View style={styles.contentView}>
         <HeaderView />
+
+        <View style={styles.matchesShowContainerView}>
+          <View style={styles.newMatchesContainerView}>
+            <Text style={styles.newMatchesText}>New Matches </Text>
+          </View>
+        </View>
       </View>
-    </View>
+    </ImageBackground>
   );
 };
 
@@ -23,5 +39,15 @@ const styles = StyleSheet.create({
   contentView: {
     width: '90%',
     alignSelf: 'center',
+    marginTop: StatusBar.currentHeight,
+  },
+  matchesShowContainerView: {
+    marginVertical: 20,
+  },
+  newMatchesContainerView: {},
+  newMatchesText: {
+    color: COLORS.White,
+    fontSize: 16,
+    fontWeight: '500',
   },
 });

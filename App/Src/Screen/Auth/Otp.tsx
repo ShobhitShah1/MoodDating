@@ -28,11 +28,10 @@ const Otp = () => {
         source={ImagesPath.SplashBackground}
         blurRadius={80}>
         <StatusBar
-          barStyle="dark-content"
+          barStyle="light-content"
           backgroundColor="transparent"
           translucent
         />
-
         <ScrollView
           bounces={false}
           nestedScrollEnabled={true}

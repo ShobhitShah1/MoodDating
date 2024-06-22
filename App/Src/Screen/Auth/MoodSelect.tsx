@@ -9,22 +9,21 @@ import {
   LayoutAnimation,
   NativeScrollEvent,
   NativeSyntheticEvent,
-  Platform,
+  StatusBar,
   StyleSheet,
   Text,
   TouchableOpacity,
-  UIManager,
   View,
 } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {IconsPath, ImagesPath} from '../../Common/AssetsPath';
 import ButtonView from '../../Common/ButtonView';
 import TextString from '../../Common/TestString';
 import useCustomNavigation from '../../Routes/Helpers/useCustomNavigation';
 import {moods} from '../../Store/Data/LocalData';
 import {COLORS, SIZE} from '../../Theme/Theme';
 import {MoodDataProps} from '../../Types/Interfaces';
-import {IconsPath, ImagesPath} from '../../Common/AssetsPath';
 
 const {width} = Dimensions.get('window');
 
@@ -32,13 +31,6 @@ const ITEM_SIZE = width * 0.15;
 const SPACING = (width - ITEM_SIZE) / 2;
 const ITEM_MARGIN_RIGHT = 20;
 const TOP_VIEW_SIZE = 130;
-
-if (
-  Platform.OS === 'android' &&
-  UIManager.setLayoutAnimationEnabledExperimental
-) {
-  UIManager.setLayoutAnimationEnabledExperimental(true);
-}
 
 const AnimatedList: React.FC = () => {
   const scrollX = useRef(new Animated.Value(0)).current;
@@ -123,7 +115,10 @@ const AnimatedList: React.FC = () => {
       });
 
       return (
-        <ButtonView activeOpacity={1} onPress={() => animatedScroll(index)}>
+        <ButtonView
+          activeOpacity={1}
+          // onPress={() => animatedScroll(index)}
+        >
           <Animated.View
             style={[
               styles.item,
@@ -139,6 +134,11 @@ const AnimatedList: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar
+        barStyle="dark-content"
+        backgroundColor="transparent"
+        translucent
+      />
       <ImageBackground
         style={styles.imageBackground}
         blurRadius={50}

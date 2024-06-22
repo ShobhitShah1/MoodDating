@@ -14,7 +14,7 @@ const Welcome = () => {
       style={[styles.Container, {backgroundColor: 'rgba(0,0,0,0.5)'}]}
       source={ImagesPath.WelcomeBackground}>
       <StatusBar
-        barStyle="dark-content"
+        barStyle="light-content"
         backgroundColor="transparent"
         translucent
       />

@@ -1,5 +1,12 @@
 import React, {useEffect} from 'react';
-import {Image, ImageBackground, StyleSheet, Text, View} from 'react-native';
+import {
+  Image,
+  ImageBackground,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import {ImagesPath} from '../Common/AssetsPath';
 import useCustomNavigation from '../Routes/Helpers/useCustomNavigation';
 import {COLORS} from '../Theme/Theme';
@@ -19,6 +26,11 @@ const Splash = () => {
       blurRadius={IMAGE_BLUR}
       source={ImagesPath.SplashBackground}
       style={styles.container}>
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
       <View style={styles.overlayColor}>
         <Image source={ImagesPath.AppLogo} style={styles.appLogo} />
         <Text style={styles.datingAppText}>DATING APP</Text>

@@ -9,9 +9,17 @@ export const COLORS = {
   GoogleColor: 'rgba(241,67,54,1)',
   FacebookColor: 'rgba(8,102,255,1)',
   MoodSelectSubText: '#7C7979',
+  Pink: '#FF00FF',
 };
 
 export const SIZE = {
   activeOpacity: 0.8,
   borderRadius: 20,
+};
+
+export const FONTS = {
+  Bold: 'Inter-Bold',
+  Medium: 'Inter-Medium',
+  Regular: 'Inter-Regular',
+  SemiBold: 'Inter-SemiBold',
 };
