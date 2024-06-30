@@ -1,31 +1,33 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import {IconsPath} from '../../../Common/AssetsPath';
 import {COLORS} from '../../../Theme/Theme';
+import {HeaderProps} from '../../../Types/Interfaces';
+import ButtonView from '../../../Common/ButtonView';
 
 let ICON_VIEW_SIZE = 40;
 
-const HeaderView = () => {
+const HeaderView: FC<HeaderProps> = ({onMenuPress, onNotificationPress}) => {
   return (
     <View style={styles.container}>
-      <View style={styles.iconsContainer}>
+      <ButtonView onPress={onMenuPress} style={styles.iconsContainer}>
         <Image
           resizeMode="contain"
           style={styles.icons}
           source={IconsPath.ic_menu}
         />
-      </View>
+      </ButtonView>
 
       <View>
         <></>
       </View>
-      <View style={styles.iconsContainer}>
+      <ButtonView onPress={onNotificationPress} style={styles.iconsContainer}>
         <Image
           resizeMode="contain"
           style={styles.icons}
           source={IconsPath.ic_notification}
         />
-      </View>
+      </ButtonView>
     </View>
   );
 };
@@ -34,6 +36,7 @@ export default HeaderView;
 
 const styles = StyleSheet.create({
   container: {
+    marginTop: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
   },
@@ -43,7 +46,6 @@ const styles = StyleSheet.create({
     borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'white',
     shadowColor: COLORS.Primary,
     shadowOffset: {
       width: 0,

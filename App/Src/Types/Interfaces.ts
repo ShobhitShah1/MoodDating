@@ -62,4 +62,9 @@ export interface MoodDataProps {
   lightColor: string;
 }
 
+export interface HeaderProps {
+  onMenuPress: () => void;
+  onNotificationPress: () => void;
+}
+
 export interface TextInputProps extends RNTextInputProps {}

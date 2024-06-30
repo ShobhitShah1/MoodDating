@@ -10,6 +10,7 @@ export const COLORS = {
   FacebookColor: 'rgba(8,102,255,1)',
   MoodSelectSubText: '#7C7979',
   Pink: '#FF00FF',
+  LightPink: 'rgba(247, 195, 215, 1)',
 };
 
 export const SIZE = {

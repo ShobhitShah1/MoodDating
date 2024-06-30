@@ -17,5 +17,8 @@ export const IconsPath = {
   ic_swipeCard: require('../../Assets/Icons/ic_swipeCard.png'),
   ic_notification: require('../../Assets/Icons/ic_notification.png'),
   ic_menu: require('../../Assets/Icons/ic_menu.png'),
+  ic_call: require('../../Assets/Icons/ic_call.png'),
+  ic_videoCall: require('../../Assets/Icons/ic_videoCall.png'),
+  ic_message: require('../../Assets/Icons/ic_message.png'),
 };
 export default {ImagesPath, IconsPath};

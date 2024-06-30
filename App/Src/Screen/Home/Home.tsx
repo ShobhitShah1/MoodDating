@@ -1,8 +1,20 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-import {ImageBackground, StatusBar, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  ImageBackground,
+  SafeAreaView,
+  ScrollView,
+  StatusBar,
+  StyleSheet,
+  Text,
+  View,
+} from 'react-native';
 import HeaderView from './components/HeaderView';
 import {ImagesPath} from '../../Common/AssetsPath';
-import {COLORS} from '../../Theme/Theme';
+import {COLORS, FONTS} from '../../Theme/Theme';
+import RenderStoryView from './components/RenderStoryView';
+import RenderHomeCard from './components/RenderHomeCard';
 
 const Home = () => {
   return (
@@ -15,15 +27,39 @@ const Home = () => {
         backgroundColor="transparent"
         translucent
       />
-      <View style={styles.contentView}>
+      <SafeAreaView style={styles.contentView}>
         <HeaderView />
 
-        <View style={styles.matchesShowContainerView}>
+        <ScrollView
+          bounces={false}
+          nestedScrollEnabled={true}
+          showsVerticalScrollIndicator={false}
+          style={[styles.matchesShowContainerView]}>
           <View style={styles.newMatchesContainerView}>
             <Text style={styles.newMatchesText}>New Matches </Text>
           </View>
-        </View>
-      </View>
+
+          <View style={styles.dataListContainer}>
+            <FlatList
+              horizontal
+              contentContainerStyle={{gap: 10}}
+              keyExtractor={(item, index) => index.toString()}
+              showsHorizontalScrollIndicator={false}
+              data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+              style={{overflow: 'visible'}}
+              renderItem={({}) => <RenderStoryView />}
+            />
+            <FlatList
+              contentContainerStyle={{gap: 45}}
+              keyExtractor={(item, index) => index.toString()}
+              showsHorizontalScrollIndicator={false}
+              data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+              style={{marginVertical: 35}}
+              renderItem={({}) => <RenderHomeCard />}
+            />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
     </ImageBackground>
   );
 };
@@ -43,11 +79,17 @@ const styles = StyleSheet.create({
   },
   matchesShowContainerView: {
     marginVertical: 20,
+    paddingBottom: 150,
   },
   newMatchesContainerView: {},
   newMatchesText: {
+    fontSize: 17,
     color: COLORS.White,
-    fontSize: 16,
-    fontWeight: '500',
+    fontFamily: FONTS.Bold,
+  },
+  dataListContainer: {
+    justifyContent: 'center',
+    marginBottom: 80,
+    overflow: 'visible',
   },
 });
