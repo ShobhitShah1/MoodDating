@@ -2,65 +2,58 @@
 import React from 'react';
 import {
   FlatList,
-  ImageBackground,
-  SafeAreaView,
   ScrollView,
   StatusBar,
   StyleSheet,
   Text,
   View,
 } from 'react-native';
-import HeaderView from './components/HeaderView';
-import {ImagesPath} from '../../Common/AssetsPath';
+import ScreenWrapper from '../../Components/ScreenWrapper';
+import useCustomNavigation from '../../Routes/Helpers/useCustomNavigation';
 import {COLORS, FONTS} from '../../Theme/Theme';
-import RenderStoryView from './components/RenderStoryView';
+import HeaderView from './components/HeaderView';
 import RenderHomeCard from './components/RenderHomeCard';
+import RenderStoryView from './components/RenderStoryView';
 
 const Home = () => {
+  const navigation = useCustomNavigation() as any;
   return (
-    <ImageBackground
-      style={styles.container}
-      source={ImagesPath.SplashBackground}
-      blurRadius={80}>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor="transparent"
-        translucent
+    <ScreenWrapper>
+      <HeaderView
+        onMenuPress={() => navigation?.openDrawer()}
+        onNotificationPress={() => {}}
       />
-      <SafeAreaView style={styles.contentView}>
-        <HeaderView />
 
-        <ScrollView
-          bounces={false}
-          nestedScrollEnabled={true}
-          showsVerticalScrollIndicator={false}
-          style={[styles.matchesShowContainerView]}>
-          <View style={styles.newMatchesContainerView}>
-            <Text style={styles.newMatchesText}>New Matches </Text>
-          </View>
+      <ScrollView
+        bounces={false}
+        nestedScrollEnabled={true}
+        showsVerticalScrollIndicator={false}
+        style={[styles.matchesShowContainerView]}>
+        <View style={styles.newMatchesContainerView}>
+          <Text style={styles.newMatchesText}>New Matches </Text>
+        </View>
 
-          <View style={styles.dataListContainer}>
-            <FlatList
-              horizontal
-              contentContainerStyle={{gap: 10}}
-              keyExtractor={(item, index) => index.toString()}
-              showsHorizontalScrollIndicator={false}
-              data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
-              style={{overflow: 'visible'}}
-              renderItem={({}) => <RenderStoryView />}
-            />
-            <FlatList
-              contentContainerStyle={{gap: 45}}
-              keyExtractor={(item, index) => index.toString()}
-              showsHorizontalScrollIndicator={false}
-              data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
-              style={{marginVertical: 35}}
-              renderItem={({}) => <RenderHomeCard />}
-            />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </ImageBackground>
+        <View style={styles.dataListContainer}>
+          <FlatList
+            horizontal
+            contentContainerStyle={{gap: 10}}
+            keyExtractor={(item, index) => index.toString()}
+            showsHorizontalScrollIndicator={false}
+            data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+            style={{overflow: 'visible'}}
+            renderItem={({}) => <RenderStoryView />}
+          />
+          <FlatList
+            contentContainerStyle={{gap: 45}}
+            keyExtractor={(item, index) => index.toString()}
+            showsHorizontalScrollIndicator={false}
+            data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+            style={{marginVertical: 35}}
+            renderItem={({}) => <RenderHomeCard />}
+          />
+        </View>
+      </ScrollView>
+    </ScreenWrapper>
   );
 };
 

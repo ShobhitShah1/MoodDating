@@ -1,11 +1,12 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text} from 'react-native';
+import ScreenWrapper from '../../Components/ScreenWrapper';
 
 const Likes = () => {
   return (
-    <View>
-      <Text>Likes</Text>
-    </View>
+    <ScreenWrapper>
+      <Text>Hello</Text>
+    </ScreenWrapper>
   );
 };
 

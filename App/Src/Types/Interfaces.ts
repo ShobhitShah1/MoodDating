@@ -24,10 +24,12 @@ export type RootStackParamList = {
   MoodSelect: undefined;
   BottomTab:
     | {
-        screen?: 'Home' | 'Cards' | 'Chat' | 'Profile';
+        screen?: 'Home' | 'People' | 'Cards' | 'Chat' | 'Profile';
       }
     | undefined;
+  DrawerTab: undefined;
   Home: undefined;
+  People: undefined;
   Cards: undefined;
   Likes: undefined;
   Chat: undefined;
@@ -63,8 +65,8 @@ export interface MoodDataProps {
 }
 
 export interface HeaderProps {
-  onMenuPress: () => void;
-  onNotificationPress: () => void;
+  onMenuPress?: () => void;
+  onNotificationPress?: () => void;
 }
 
 export interface TextInputProps extends RNTextInputProps {}

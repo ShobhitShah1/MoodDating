@@ -24,7 +24,7 @@ interface ScreenConfig {
 
 const SCREENS: ScreenConfig[] = [
   {name: 'Home', component: Home, icon: IconsPath.ic_home},
-  {name: 'Cards1', component: Cards, icon: IconsPath.ic_swipeCard},
+  {name: 'People', component: Cards, icon: IconsPath.ic_people_bottom},
   {name: 'Cards', component: Cards, icon: IconsPath.ic_swipeCard},
   {name: 'Likes', component: Likes, icon: IconsPath.ic_chat},
   {name: 'Profile', component: Profile, icon: IconsPath.ic_home},

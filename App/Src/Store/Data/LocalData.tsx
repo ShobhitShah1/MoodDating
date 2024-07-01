@@ -1,3 +1,4 @@
+import {IconsPath} from '../../Common/AssetsPath';
 import {MoodDataProps} from '../../Types/Interfaces';
 
 export const moods: MoodDataProps[] = [
@@ -97,4 +98,38 @@ export const moods: MoodDataProps[] = [
     primaryColor: '#FF6347',
     lightColor: '#FFA07A',
   },
+];
+
+export const DrawerData: {
+  id: number;
+  name: string;
+  screen: string;
+  icon: number;
+}[] = [
+  {
+    id: 0,
+    name: 'My Profile',
+    screen: 'myProfile',
+    icon: IconsPath.ic_user_profile,
+  },
+  {
+    id: 1,
+    name: 'Notification',
+    screen: 'myProfile',
+    icon: IconsPath.ic_notification_filled,
+  },
+  {
+    id: 2,
+    name: 'Account Setting',
+    screen: 'myProfile',
+    icon: IconsPath.ic_settingProfile,
+  },
+  {
+    id: 3,
+    name: 'Invite Friends',
+    screen: 'myProfile',
+    icon: IconsPath.ic_mdi_invite,
+  },
+  {id: 4, name: 'Help', screen: 'myProfile', icon: IconsPath.ic_raphael_help},
+  {id: 5, name: 'Contact', screen: 'myProfile', icon: IconsPath.ic_contact},
 ];

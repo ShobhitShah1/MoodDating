@@ -4,13 +4,19 @@ import {IconsPath} from '../../../Common/AssetsPath';
 import {COLORS} from '../../../Theme/Theme';
 import {HeaderProps} from '../../../Types/Interfaces';
 import ButtonView from '../../../Common/ButtonView';
+import useCustomNavigation from '../../../Routes/Helpers/useCustomNavigation';
 
 let ICON_VIEW_SIZE = 40;
 
 const HeaderView: FC<HeaderProps> = ({onMenuPress, onNotificationPress}) => {
+  const navigation = useCustomNavigation() as any;
   return (
     <View style={styles.container}>
-      <ButtonView onPress={onMenuPress} style={styles.iconsContainer}>
+      <ButtonView
+        onPress={() => {
+          onMenuPress ? onMenuPress() : navigation?.openDrawer();
+        }}
+        style={styles.iconsContainer}>
         <Image
           resizeMode="contain"
           style={styles.icons}
@@ -21,7 +27,13 @@ const HeaderView: FC<HeaderProps> = ({onMenuPress, onNotificationPress}) => {
       <View>
         <></>
       </View>
-      <ButtonView onPress={onNotificationPress} style={styles.iconsContainer}>
+      <ButtonView
+        onPress={() => {
+          onNotificationPress
+            ? onNotificationPress()
+            : navigation.navigate('Notification');
+        }}
+        style={styles.iconsContainer}>
         <Image
           resizeMode="contain"
           style={styles.icons}

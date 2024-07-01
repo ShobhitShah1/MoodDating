@@ -2,13 +2,13 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 import Login from '../Screen/Auth/Login';
-import Otp from '../Screen/Auth/Otp';
-import {RootStackParamList, screenOptions} from '../Types/Interfaces';
-import {navigationRef} from './Helpers/NavigationRef';
 import MoodSelect from '../Screen/Auth/MoodSelect';
+import Otp from '../Screen/Auth/Otp';
 import Welcome from '../Screen/Auth/Welcome';
-import BottomTabRoutes from './BottomTabRoutes';
 import Splash from '../Screen/Splash';
+import {RootStackParamList, screenOptions} from '../Types/Interfaces';
+import DrawerTabRoutes from './DrawerTabRoutes';
+import {navigationRef} from './Helpers/NavigationRef';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -31,7 +31,8 @@ const Routes = () => {
         initialRouteName="BottomTab">
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="AuthStack" component={AuthStack} />
-        <Stack.Screen name="BottomTab" component={BottomTabRoutes} />
+        <Stack.Screen name="DrawerTab" component={DrawerTabRoutes} />
+        {/* <Stack.Screen name="BottomTab" component={BottomTabRoutes} /> */}
       </Stack.Navigator>
     </NavigationContainer>
   );

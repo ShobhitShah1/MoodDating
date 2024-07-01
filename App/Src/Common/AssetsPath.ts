@@ -13,6 +13,7 @@ export const IconsPath = {
   ic_facebook: require('../../Assets/Icons/ic_facebook.png'),
   ic_google: require('../../Assets/Icons/ic_google.png'),
   ic_home: require('../../Assets/Icons/ic_home.png'),
+  ic_people_bottom: require('../../Assets/Icons/ic_people_bottom.png'),
   ic_chat: require('../../Assets/Icons/ic_chat.png'),
   ic_swipeCard: require('../../Assets/Icons/ic_swipeCard.png'),
   ic_notification: require('../../Assets/Icons/ic_notification.png'),
@@ -20,5 +21,11 @@ export const IconsPath = {
   ic_call: require('../../Assets/Icons/ic_call.png'),
   ic_videoCall: require('../../Assets/Icons/ic_videoCall.png'),
   ic_message: require('../../Assets/Icons/ic_message.png'),
+  ic_contact: require('../../Assets/Icons/ic_contact.png'),
+  ic_mdi_invite: require('../../Assets/Icons/ic_mdi_invite.png'),
+  ic_notification_filled: require('../../Assets/Icons/ic_notification-filled.png'),
+  ic_settingProfile: require('../../Assets/Icons/ic_settingProfile.png'),
+  ic_user_profile: require('../../Assets/Icons/ic_user-profile.png'),
+  ic_raphael_help: require('../../Assets/Icons/ic_raphael_help.png'),
 };
 export default {ImagesPath, IconsPath};

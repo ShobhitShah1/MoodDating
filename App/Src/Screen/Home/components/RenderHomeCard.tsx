@@ -4,8 +4,8 @@ import {COLORS, FONTS} from '../../../Theme/Theme';
 import ButtonView from '../../../Common/ButtonView';
 import {IconsPath} from '../../../Common/AssetsPath';
 
-const SMALL_IMAGE = 'https://picsum.photos/200/300';
-const LARGE_IMAGE = 'https://picsum.photos/1080/720';
+export const SMALL_IMAGE = 'https://picsum.photos/200/400';
+export const LARGE_IMAGE = 'https://picsum.photos/1080/720';
 
 const RenderHomeCard = () => {
   return (

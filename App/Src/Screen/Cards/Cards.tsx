@@ -1,11 +1,13 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {StyleSheet, Text} from 'react-native';
+import ScreenWrapper from '../../Components/ScreenWrapper';
+import HeaderView from '../Home/components/HeaderView';
 
 const Cards = () => {
   return (
-    <View>
-      <Text>Cards</Text>
-    </View>
+    <ScreenWrapper>
+      <HeaderView />
+    </ScreenWrapper>
   );
 };
 
