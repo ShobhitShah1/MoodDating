@@ -27,5 +27,6 @@ export const IconsPath = {
   ic_settingProfile: require('../../Assets/Icons/ic_settingProfile.png'),
   ic_user_profile: require('../../Assets/Icons/ic_user-profile.png'),
   ic_raphael_help: require('../../Assets/Icons/ic_raphael_help.png'),
+  ic_heart: require('../../Assets/Icons/ic_heart.png'),
 };
 export default {ImagesPath, IconsPath};

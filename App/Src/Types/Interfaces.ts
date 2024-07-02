@@ -69,4 +69,17 @@ export interface HeaderProps {
   onNotificationPress?: () => void;
 }
 
+export interface LikesDataProps {
+  id: number;
+  profile: string;
+  index?: number;
+}
+
+export interface DrawerDataProps {
+  id: number;
+  name: string;
+  screen: string;
+  icon: number;
+}
+
 export interface TextInputProps extends RNTextInputProps {}

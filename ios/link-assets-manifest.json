@@ -16,6 +16,10 @@
     {
       "path": "App/Assets/Fonts/Inter-SemiBold.ttf",
       "sha1": "5e0c44e57e7e090252d79f622899e67585bb892c"
+    },
+    {
+      "path": "App/Assets/Fonts/KaushanScript-Regular.ttf",
+      "sha1": "8b203c70f9c8f5d437eb5a87a6c7df39fb2996b7"
     }
   ]
 }

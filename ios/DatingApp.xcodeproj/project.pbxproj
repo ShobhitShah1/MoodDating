@@ -18,6 +18,7 @@
 		A697483BE1754656B5F5EFC4 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 36E723409B5D4364B5EA57F4 /* Inter-Medium.ttf */; };
 		83E37B601169487A8DF484C1 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8697BFF3115E425599C1FB7E /* Inter-Regular.ttf */; };
 		08810BCDB01B49FF8CA63176 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F6B26F245886451CBE2A1BD4 /* Inter-SemiBold.ttf */; };
+		988509AA8B5541DFBD93E33F /* KaushanScript-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEEB29738F934A33B32FB52B /* KaushanScript-Regular.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		36E723409B5D4364B5EA57F4 /* Inter-Medium.ttf */ = {isa = PBXFileReference; name = "Inter-Medium.ttf"; path = "../App/Assets/Fonts/Inter-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		8697BFF3115E425599C1FB7E /* Inter-Regular.ttf */ = {isa = PBXFileReference; name = "Inter-Regular.ttf"; path = "../App/Assets/Fonts/Inter-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		F6B26F245886451CBE2A1BD4 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; name = "Inter-SemiBold.ttf"; path = "../App/Assets/Fonts/Inter-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DEEB29738F934A33B32FB52B /* KaushanScript-Regular.ttf */ = {isa = PBXFileReference; name = "KaushanScript-Regular.ttf"; path = "../App/Assets/Fonts/KaushanScript-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				36E723409B5D4364B5EA57F4 /* Inter-Medium.ttf */,
 				8697BFF3115E425599C1FB7E /* Inter-Regular.ttf */,
 				F6B26F245886451CBE2A1BD4 /* Inter-SemiBold.ttf */,
+				DEEB29738F934A33B32FB52B /* KaushanScript-Regular.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 				A697483BE1754656B5F5EFC4 /* Inter-Medium.ttf in Resources */,
 				83E37B601169487A8DF484C1 /* Inter-Regular.ttf in Resources */,
 				08810BCDB01B49FF8CA63176 /* Inter-SemiBold.ttf in Resources */,
+				988509AA8B5541DFBD93E33F /* KaushanScript-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,20 +9,15 @@ import {
   View,
 } from 'react-native';
 import ScreenWrapper from '../../Components/ScreenWrapper';
-import useCustomNavigation from '../../Routes/Helpers/useCustomNavigation';
 import {COLORS, FONTS} from '../../Theme/Theme';
 import HeaderView from './components/HeaderView';
 import RenderHomeCard from './components/RenderHomeCard';
 import RenderStoryView from './components/RenderStoryView';
 
 const Home = () => {
-  const navigation = useCustomNavigation() as any;
   return (
     <ScreenWrapper>
-      <HeaderView
-        onMenuPress={() => navigation?.openDrawer()}
-        onNotificationPress={() => {}}
-      />
+      <HeaderView />
 
       <ScrollView
         bounces={false}

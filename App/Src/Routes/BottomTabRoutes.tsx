@@ -11,6 +11,7 @@ import Likes from '../Screen/Likes/Likes';
 import Profile from '../Screen/Profile/Profile';
 import {COLORS} from '../Theme/Theme';
 import {RootStackParamList} from '../Types/Interfaces';
+import Chat from '../Screen/Chat/Chat';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
@@ -24,9 +25,9 @@ interface ScreenConfig {
 
 const SCREENS: ScreenConfig[] = [
   {name: 'Home', component: Home, icon: IconsPath.ic_home},
-  {name: 'People', component: Cards, icon: IconsPath.ic_people_bottom},
+  {name: 'Likes', component: Likes, icon: IconsPath.ic_people_bottom},
   {name: 'Cards', component: Cards, icon: IconsPath.ic_swipeCard},
-  {name: 'Likes', component: Likes, icon: IconsPath.ic_chat},
+  {name: 'Chat', component: Chat, icon: IconsPath.ic_chat},
   {name: 'Profile', component: Profile, icon: IconsPath.ic_home},
 ];
 

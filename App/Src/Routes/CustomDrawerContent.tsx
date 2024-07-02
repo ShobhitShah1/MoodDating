@@ -15,7 +15,7 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
       {...props}
       contentContainerStyle={styles.containContainer}>
       <BlurView style={styles.absolute} blurType="dark" blurAmount={1}>
-        <View style={styles.drawerContainer}>
+        <View>
           <View style={styles.logoContainer}>
             <Image source={{uri: SMALL_IMAGE}} style={styles.logo} />
           </View>
@@ -37,9 +37,6 @@ export default CustomDrawerContent;
 
 const styles = StyleSheet.create({
   containContainer: {
-    flex: 1,
-  },
-  drawerContainer: {
     flex: 1,
   },
   absolute: {
