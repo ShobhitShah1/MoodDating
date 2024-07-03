@@ -1,5 +1,5 @@
-import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
+import {Text} from 'react-native';
 import ScreenWrapper from '../../Components/ScreenWrapper';
 
 const Chat = () => {
@@ -11,5 +11,3 @@ const Chat = () => {
 };
 
 export default Chat;
-
-const styles = StyleSheet.create({});

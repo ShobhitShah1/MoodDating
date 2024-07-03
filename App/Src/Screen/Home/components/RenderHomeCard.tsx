@@ -65,7 +65,6 @@ const styles = StyleSheet.create({
   imageContainerAndButton: {
     height: '80%',
     overflow: 'hidden',
-    backgroundColor: 'yellow',
   },
   profileImageContainer: {
     zIndex: 99999,

@@ -68,7 +68,8 @@ const BottomTabRoutes: React.FC = () => (
       headerShown: false,
       tabBarShowLabel: false,
       tabBarStyle: styles.tabBarStyle,
-    }}>
+    }}
+    initialRouteName="Cards">
     {SCREENS.map(({name, component, icon}) => (
       <Tab.Screen
         key={name}

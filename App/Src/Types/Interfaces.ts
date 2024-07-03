@@ -83,3 +83,11 @@ export interface DrawerDataProps {
 }
 
 export interface TextInputProps extends RNTextInputProps {}
+
+export interface RenderCardProps {
+  card: any;
+  cardIndex: number;
+  onLikePress: () => void;
+  onDislikePress: () => void;
+  onProfilePress: () => void;
+}

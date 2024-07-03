@@ -18,7 +18,7 @@ const HeaderView: FC<HeaderProps> = ({onMenuPress, onNotificationPress}) => {
         }}
         style={styles.iconsContainer}>
         <Image
-          resizeMode="contain"
+          resizeMode="cover"
           style={styles.icons}
           source={IconsPath.ic_menu}
         />
@@ -35,7 +35,7 @@ const HeaderView: FC<HeaderProps> = ({onMenuPress, onNotificationPress}) => {
         }}
         style={styles.iconsContainer}>
         <Image
-          resizeMode="contain"
+          resizeMode="cover"
           style={styles.icons}
           source={IconsPath.ic_notification}
         />
@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   icons: {
-    width: ICON_VIEW_SIZE / 1.9,
-    height: ICON_VIEW_SIZE / 1.9,
+    width: ICON_VIEW_SIZE,
+    height: ICON_VIEW_SIZE,
     alignItems: 'center',
     justifyContent: 'center',
   },

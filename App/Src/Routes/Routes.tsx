@@ -28,7 +28,7 @@ const Routes = () => {
     <NavigationContainer ref={navigationRef}>
       <Stack.Navigator
         screenOptions={screenOptions}
-        initialRouteName="BottomTab">
+        initialRouteName="DrawerTab">
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="AuthStack" component={AuthStack} />
         <Stack.Screen name="DrawerTab" component={DrawerTabRoutes} />

@@ -13,7 +13,6 @@ const DrawerTabRoutes = () => {
       screenOptions={{
         headerShown: false,
         drawerStyle: styles.container,
-
         overlayColor: 'rgba(13, 13, 13, 0.88)',
       }}
       drawerContent={props => <CustomDrawerContent {...props} />}>

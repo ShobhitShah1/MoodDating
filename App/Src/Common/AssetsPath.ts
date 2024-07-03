@@ -28,5 +28,8 @@ export const IconsPath = {
   ic_user_profile: require('../../Assets/Icons/ic_user-profile.png'),
   ic_raphael_help: require('../../Assets/Icons/ic_raphael_help.png'),
   ic_heart: require('../../Assets/Icons/ic_heart.png'),
+  ic_cancel_with_border: require('../../Assets/Icons/ic_cancel_with_border.png'),
+  ic_heart_fill: require('../../Assets/Icons/ic_heart_fill.png'),
+  ic_heart_without_fill: require('../../Assets/Icons/ic_heart_without_fill.png'),
 };
 export default {ImagesPath, IconsPath};
