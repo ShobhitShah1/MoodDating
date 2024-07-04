@@ -31,5 +31,6 @@ export const IconsPath = {
   ic_cancel_with_border: require('../../Assets/Icons/ic_cancel_with_border.png'),
   ic_heart_fill: require('../../Assets/Icons/ic_heart_fill.png'),
   ic_heart_without_fill: require('../../Assets/Icons/ic_heart_without_fill.png'),
+  ic_leftArrow: require('../../Assets/Icons/ic_leftArrow.png'),
 };
 export default {ImagesPath, IconsPath};

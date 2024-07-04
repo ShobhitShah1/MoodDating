@@ -34,6 +34,7 @@ export type RootStackParamList = {
   Likes: undefined;
   Chat: undefined;
   Profile: undefined;
+  UserCardDetail: undefined;
 };
 
 export const screenOptions: NativeStackNavigationOptions = {

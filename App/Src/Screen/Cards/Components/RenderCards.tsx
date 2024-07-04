@@ -36,8 +36,8 @@ const RenderCards: FC<RenderCardProps> = ({
             disable
             onPress={() => {}}
             style={styles.matchPercentButtonView}>
-            <Text style={styles.matchPercentText}>
-              70%{' '}
+            <Text numberOfLines={2} style={[styles.matchPercentText]}>
+              {Number(parseFloat(Math.random().toFixed(2)) * 100).toFixed(0)}%{' '}
               <Image
                 source={IconsPath.ic_heart_fill}
                 style={styles.fillHeartIcon}
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
   },
   matchPercentButtonView: {
     paddingHorizontal: 15,
+    width: '43%',
     height: SMALL_ICON_SIZE,
     borderRadius: 50,
     justifyContent: 'center',

@@ -9,6 +9,7 @@ import Splash from '../Screen/Splash';
 import {RootStackParamList, screenOptions} from '../Types/Interfaces';
 import DrawerTabRoutes from './DrawerTabRoutes';
 import {navigationRef} from './Helpers/NavigationRef';
+import UserCardDetail from '../Screen/Detail/UserCardDetail';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -32,7 +33,7 @@ const Routes = () => {
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="AuthStack" component={AuthStack} />
         <Stack.Screen name="DrawerTab" component={DrawerTabRoutes} />
-        {/* <Stack.Screen name="BottomTab" component={BottomTabRoutes} /> */}
+        <Stack.Screen name="UserCardDetail" component={UserCardDetail} />
       </Stack.Navigator>
     </NavigationContainer>
   );
