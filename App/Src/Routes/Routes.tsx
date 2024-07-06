@@ -27,8 +27,7 @@ const AuthStack = () => {
 const Routes = () => {
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator
-        screenOptions={screenOptions}>
+      <Stack.Navigator screenOptions={screenOptions}>
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="AuthStack" component={AuthStack} />
         <Stack.Screen name="DrawerTab" component={DrawerTabRoutes} />
