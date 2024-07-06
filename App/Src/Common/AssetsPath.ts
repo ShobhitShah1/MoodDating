@@ -32,5 +32,18 @@ export const IconsPath = {
   ic_heart_fill: require('../../Assets/Icons/ic_heart_fill.png'),
   ic_heart_without_fill: require('../../Assets/Icons/ic_heart_without_fill.png'),
   ic_leftArrow: require('../../Assets/Icons/ic_leftArrow.png'),
+
+  // Social
+  ic_social_facebook: require('../../Assets/Icons/ic_social_facebook.png'),
+  ic_social_instagram: require('../../Assets/Icons/ic_social_instagram.png'),
+  ic_social_twitter: require('../../Assets/Icons/ic_social_twitter.png'),
+  ic_location: require('../../Assets/Icons/ic_location.png'),
+
+  // Interest Icons
+  ic_interest_music: require('../../Assets/Icons/ic_interest_music.png'),
+  ic_interest_book: require('../../Assets/Icons/ic_interest_book.png'),
+  ic_interest_hugeicons_game: require('../../Assets/Icons/ic_interest_hugeicons_game.png'),
+  ic_interest_paint: require('../../Assets/Icons/ic_interest_paint-brush.png'),
+  ic_interest_photography: require('../../Assets/Icons/ic_interest_photography.png'),
 };
 export default {ImagesPath, IconsPath};

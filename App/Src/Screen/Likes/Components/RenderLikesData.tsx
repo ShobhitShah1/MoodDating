@@ -3,11 +3,12 @@ import React, {FC} from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import {IconsPath} from '../../../Common/AssetsPath';
 import {COLORS, FONTS} from '../../../Theme/Theme';
-import {LikesDataProps} from '../../../Types/Interfaces';
 
 let HEIGHT = 380;
 let HEART_VIEW = 36;
-const RenderLikesData: FC<LikesDataProps> = ({index}) => {
+
+const RenderLikesData: FC<{index: number}> = ({index}) => {
+  const LIKED_PROFILE = `https://picsum.photos/id/${index + 12}/1080/720`;
   return (
     <View key={index} style={styles.container}>
       <View style={styles.topTitle}>
@@ -28,10 +29,7 @@ const RenderLikesData: FC<LikesDataProps> = ({index}) => {
             <View style={[styles.heartView, {bottom: -5, right: -20}]}>
               <Image source={IconsPath.ic_heart} style={styles.heartImage} />
             </View>
-            <Image
-              source={{uri: 'https://picsum.photos/id/50/1080/720'}}
-              style={styles.imageStyle}
-            />
+            <Image source={{uri: LIKED_PROFILE}} style={styles.imageStyle} />
           </View>
         </View>
       </View>

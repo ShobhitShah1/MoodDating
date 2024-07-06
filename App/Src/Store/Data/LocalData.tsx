@@ -1,9 +1,5 @@
 import {IconsPath} from '../../Common/AssetsPath';
-import {
-  DrawerDataProps,
-  LikesDataProps,
-  MoodDataProps,
-} from '../../Types/Interfaces';
+import {DrawerDataProps, MoodDataProps} from '../../Types/Interfaces';
 
 export const moods: MoodDataProps[] = [
   {
@@ -131,31 +127,4 @@ export const DrawerData: DrawerDataProps[] = [
   },
   {id: 4, name: 'Help', screen: 'myProfile', icon: IconsPath.ic_raphael_help},
   {id: 5, name: 'Contact', screen: 'myProfile', icon: IconsPath.ic_contact},
-];
-
-export const LikesData: LikesDataProps[] = [
-  {
-    id: 0,
-    profile: 'https://picsum.photos/id/1080/720/300',
-  },
-  {
-    id: 1,
-    profile: 'https://picsum.photos/id/1080/720/720',
-  },
-  {
-    id: 2,
-    profile: 'https://picsum.photos/id/1080/720/500',
-  },
-  {
-    id: 3,
-    profile: 'https://picsum.photos/id/1080/720/600',
-  },
-  {
-    id: 4,
-    profile: 'https://picsum.photos/id/1080/720/700',
-  },
-  {
-    id: 5,
-    profile: 'https://picsum.photos/id/1080/720/800',
-  },
 ];

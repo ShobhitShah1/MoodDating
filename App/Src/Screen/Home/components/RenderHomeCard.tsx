@@ -4,12 +4,12 @@ import {COLORS, FONTS} from '../../../Theme/Theme';
 import ButtonView from '../../../Common/ButtonView';
 import {IconsPath} from '../../../Common/AssetsPath';
 
-export const SMALL_IMAGE = 'https://picsum.photos/200/400';
-export const LARGE_IMAGE = 'https://picsum.photos/1080/720';
+const RenderHomeCard = ({index}: {index: number}) => {
+  const SMALL_IMAGE = `https://picsum.photos/id/${index + 21}/200/400`;
+  const LARGE_IMAGE = `https://picsum.photos/id/${index + 15}/200/300`;
 
-const RenderHomeCard = () => {
   return (
-    <React.Fragment>
+    <View style={styles.mainContainer}>
       <View style={styles.profileImageContainer}>
         <Image source={{uri: SMALL_IMAGE}} style={styles.profileImage} />
         <Text style={styles.userNameText}>John Patel</Text>
@@ -41,13 +41,16 @@ const RenderHomeCard = () => {
           </View>
         </View>
       </View>
-    </React.Fragment>
+    </View>
   );
 };
 
 export default RenderHomeCard;
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    marginTop: 35,
+  },
   container: {
     flex: 1,
     width: '100%',

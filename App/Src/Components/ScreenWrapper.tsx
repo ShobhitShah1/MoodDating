@@ -1,29 +1,40 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {
+  Dimensions,
   ImageBackground,
   SafeAreaView,
   StatusBar,
   StyleSheet,
+  View,
+  ViewStyle,
 } from 'react-native';
 import {ImagesPath} from '../Common/AssetsPath';
 
-const ScreenWrapper: React.FC<{children: React.ReactNode}> = ({children}) => {
+const {width, height} = Dimensions.get('window');
+
+const ScreenWrapper: React.FC<{
+  children: React.ReactNode;
+  containerStyle?: ViewStyle;
+}> = ({children, containerStyle}) => {
   return (
     <ImageBackground
       style={styles.container}
       source={ImagesPath.SplashBackground}
       blurRadius={80}>
+      <View style={styles.blackView} />
       <StatusBar
         barStyle="light-content"
         backgroundColor="transparent"
         translucent
       />
-      <SafeAreaView style={styles.contentView}>{children}</SafeAreaView>
+      <SafeAreaView style={[styles.contentView, containerStyle]}>
+        {children}
+      </SafeAreaView>
     </ImageBackground>
   );
 };
 
-export default ScreenWrapper;
+export default memo(ScreenWrapper);
 
 const styles = StyleSheet.create({
   container: {
@@ -35,5 +46,11 @@ const styles = StyleSheet.create({
     width: '90%',
     alignSelf: 'center',
     marginTop: StatusBar.currentHeight,
+  },
+  blackView: {
+    width: width,
+    height: height,
+    position: 'absolute',
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
 });

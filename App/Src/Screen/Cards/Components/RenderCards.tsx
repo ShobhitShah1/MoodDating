@@ -37,7 +37,7 @@ const RenderCards: FC<RenderCardProps> = ({
             onPress={() => {}}
             style={styles.matchPercentButtonView}>
             <Text numberOfLines={2} style={[styles.matchPercentText]}>
-              {Number(parseFloat(Math.random().toFixed(2)) * 100).toFixed(0)}%{' '}
+              10%{' '}
               <Image
                 source={IconsPath.ic_heart_fill}
                 style={styles.fillHeartIcon}

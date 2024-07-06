@@ -14,6 +14,8 @@ import HeaderView from './components/HeaderView';
 import RenderHomeCard from './components/RenderHomeCard';
 import RenderStoryView from './components/RenderStoryView';
 
+const data = Array.from({length: 250}, (_, i) => i);
+
 const Home = () => {
   return (
     <ScreenWrapper>
@@ -30,21 +32,19 @@ const Home = () => {
 
         <View style={styles.dataListContainer}>
           <FlatList
-            horizontal
+            data={data}
+            horizontal={true}
             contentContainerStyle={{gap: 10}}
-            keyExtractor={(item, index) => index.toString()}
             showsHorizontalScrollIndicator={false}
-            data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
-            style={{overflow: 'visible'}}
-            renderItem={({}) => <RenderStoryView />}
+            keyExtractor={(item, index) => index.toString()}
+            renderItem={({index}) => <RenderStoryView index={index} />}
           />
           <FlatList
-            contentContainerStyle={{gap: 45}}
-            keyExtractor={(item, index) => index.toString()}
-            showsHorizontalScrollIndicator={false}
-            data={[1, 2, 3, 4, 5, 6, 7, 8, 9]}
+            data={data}
+            contentContainerStyle={{gap: 25}}
             style={{marginVertical: 35}}
-            renderItem={({}) => <RenderHomeCard />}
+            renderItem={({index}) => <RenderHomeCard index={index} />}
+            keyExtractor={(item, index) => index.toString()}
           />
         </View>
       </ScrollView>

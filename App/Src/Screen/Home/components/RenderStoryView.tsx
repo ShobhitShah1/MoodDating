@@ -2,15 +2,16 @@ import {Image, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {COLORS, FONTS} from '../../../Theme/Theme';
 
-const DUMMY = 'https://picsum.photos/200/300';
 const WIDTH = 70;
 const HEIGHT = 70;
 
-const RenderStoryView = () => {
+const RenderStoryView = ({index}: {index: number}) => {
+  const PROFILE = `https://picsum.photos/id/${index + 12}/200/300`;
+
   return (
     <View style={styles.container}>
       <View style={styles.imageContainer}>
-        <Image source={{uri: DUMMY}} style={styles.image} />
+        <Image source={{uri: PROFILE}} style={styles.image} />
       </View>
       <Text numberOfLines={1} style={styles.userNameText}>
         John
@@ -24,7 +25,7 @@ export default RenderStoryView;
 const styles = StyleSheet.create({
   container: {
     width: 70,
-    marginVertical: 15,
+    marginTop: 15,
     justifyContent: 'center',
   },
   imageContainer: {

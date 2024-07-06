@@ -1,13 +1,24 @@
 import React from 'react';
 import {Dimensions, Image, StyleSheet, View} from 'react-native';
 import {IconsPath} from '../Common/AssetsPath';
+import ButtonView from '../Common/ButtonView';
+import useCustomNavigation from '../Routes/Helpers/useCustomNavigation';
 
 const {height} = Dimensions.get('window');
 
 const CommonHeaderView = () => {
+  const navigation = useCustomNavigation();
+
   return (
     <View style={styles.container}>
-      <Image source={IconsPath.ic_leftArrow} style={styles.leftArrowIcon} />
+      <ButtonView
+        onPress={() => {
+          if (navigation.canGoBack()) {
+            navigation.goBack();
+          }
+        }}>
+        <Image source={IconsPath.ic_leftArrow} style={styles.leftArrowIcon} />
+      </ButtonView>
     </View>
   );
 };
@@ -20,7 +31,6 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     height: height * 0.05,
     justifyContent: 'center',
-    backgroundColor: 'yellow',
   },
   leftArrowIcon: {
     width: 25,

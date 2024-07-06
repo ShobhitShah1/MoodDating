@@ -2,8 +2,9 @@ import React from 'react';
 import {FlatList, StyleSheet} from 'react-native';
 import ScreenWrapper from '../../Components/ScreenWrapper';
 import HeaderView from '../Home/components/HeaderView';
-import {LikesData} from '../../Store/Data/LocalData';
 import RenderLikesData from './Components/RenderLikesData';
+
+const LikesData = Array.from({length: 250}, (_, i) => i);
 
 const Likes = () => {
   return (
@@ -13,16 +14,14 @@ const Likes = () => {
       <FlatList
         windowSize={7}
         data={LikesData}
-        style={styles.flatListStyle}
         initialNumToRender={5}
         maxToRenderPerBatch={5}
+        style={styles.flatListStyle}
         updateCellsBatchingPeriod={100}
-        contentContainerStyle={styles.flatListContainer}
         showsVerticalScrollIndicator={false}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({item, index}) => (
-          <RenderLikesData index={index} id={item.id} profile={item.profile} />
-        )}
+        keyExtractor={index => index.toString()}
+        contentContainerStyle={styles.flatListContainer}
+        renderItem={({index}) => <RenderLikesData index={index} />}
       />
     </ScreenWrapper>
   );

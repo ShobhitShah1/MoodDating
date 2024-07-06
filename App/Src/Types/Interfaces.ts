@@ -69,13 +69,6 @@ export interface HeaderProps {
   onMenuPress?: () => void;
   onNotificationPress?: () => void;
 }
-
-export interface LikesDataProps {
-  id: number;
-  profile: string;
-  index?: number;
-}
-
 export interface DrawerDataProps {
   id: number;
   name: string;
