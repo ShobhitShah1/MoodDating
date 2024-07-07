@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, memo} from 'react';
 import {Image, StyleSheet, View} from 'react-native';
 import {IconsPath} from '../../../Common/AssetsPath';
 import {COLORS} from '../../../Theme/Theme';
@@ -44,7 +44,7 @@ const HeaderView: FC<HeaderProps> = ({onMenuPress, onNotificationPress}) => {
   );
 };
 
-export default HeaderView;
+export default memo(HeaderView);
 
 const styles = StyleSheet.create({
   container: {

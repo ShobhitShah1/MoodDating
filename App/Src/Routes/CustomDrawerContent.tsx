@@ -1,20 +1,21 @@
-import {BlurView} from '@react-native-community/blur';
 import {
   DrawerContentComponentProps,
   DrawerContentScrollView,
 } from '@react-navigation/drawer';
 import React, {memo} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Dimensions, Image, StyleSheet, Text, View} from 'react-native';
+import {SMALL_IMAGE} from '../Common/GlobalConfig';
 import {DrawerData} from '../Store/Data/LocalData';
 import {COLORS, FONTS} from '../Theme/Theme';
-import {SMALL_IMAGE} from '../Common/GlobalConfig';
+
+const {height} = Dimensions.get('window');
 
 const CustomDrawerContent = (props: DrawerContentComponentProps) => {
   return (
     <DrawerContentScrollView
       {...props}
       contentContainerStyle={styles.containContainer}>
-      <BlurView style={styles.absolute} blurType="dark" blurAmount={15}>
+      <View style={styles.absolute}>
         <View style={styles.logoContainer}>
           <Image source={{uri: SMALL_IMAGE}} style={styles.logo} />
         </View>
@@ -27,7 +28,7 @@ const CustomDrawerContent = (props: DrawerContentComponentProps) => {
             </View>
           );
         })}
-      </BlurView>
+      </View>
     </DrawerContentScrollView>
   );
 };
@@ -40,8 +41,9 @@ const styles = StyleSheet.create({
   },
   absolute: {
     flex: 1,
-    height: '100%',
+    height: height + 10,
     width: '100%',
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
   drawerListContainer: {
     flexDirection: 'row',

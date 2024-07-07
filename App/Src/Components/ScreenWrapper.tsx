@@ -49,8 +49,8 @@ const styles = StyleSheet.create({
   },
   blackView: {
     width: width,
-    height: height,
+    height: height + 50,
     position: 'absolute',
-    backgroundColor: 'rgba(0,0,0,0.5)',
+    backgroundColor: 'rgba(0,0,0,0.6)',
   },
 });

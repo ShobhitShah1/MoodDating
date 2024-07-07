@@ -8,14 +8,20 @@ export const ImagesPath = {
 };
 
 export const IconsPath = {
+  // Bottom Tab
+  ic_home: require('../../Assets/Icons/ic_home.png'),
+  ic_people_bottom: require('../../Assets/Icons/ic_people_bottom.png'),
+  ic_chat: require('../../Assets/Icons/ic_chat.png'),
+  ic_swipeCard: require('../../Assets/Icons/ic_card.png'),
+
+  ic_focus_home: require('../../Assets/Icons/ic_focus_home.png'),
+  ic_focus_card: require('../../Assets/Icons/ic_focus_card.png'),
+  ic_focus_Like: require('../../Assets/Icons/ic_focus_Like.png'),
+
   ic_back: require('../../Assets/Icons/ic_back.png'),
   ic_cancel: require('../../Assets/Icons/ic_cancel.png'),
   ic_facebook: require('../../Assets/Icons/ic_facebook.png'),
   ic_google: require('../../Assets/Icons/ic_google.png'),
-  ic_home: require('../../Assets/Icons/ic_home.png'),
-  ic_people_bottom: require('../../Assets/Icons/ic_people_bottom.png'),
-  ic_chat: require('../../Assets/Icons/ic_chat.png'),
-  ic_swipeCard: require('../../Assets/Icons/ic_swipeCard.png'),
   ic_notification: require('../../Assets/Icons/ic_notification.png'),
   ic_menu: require('../../Assets/Icons/ic_menu.png'),
   ic_call: require('../../Assets/Icons/ic_call.png'),

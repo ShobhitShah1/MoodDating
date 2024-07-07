@@ -1,25 +1,69 @@
-import React from 'react';
-import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import React, {memo, useRef, useState} from 'react';
+import {
+  Animated,
+  Easing,
+  Image,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {COLORS, FONTS} from '../../../Theme/Theme';
 import ButtonView from '../../../Common/ButtonView';
 import {IconsPath} from '../../../Common/AssetsPath';
+import {BlurView} from '@react-native-community/blur';
 
 const RenderHomeCard = ({index}: {index: number}) => {
   const SMALL_IMAGE = `https://picsum.photos/id/${index + 21}/200/400`;
-  const LARGE_IMAGE = `https://picsum.photos/id/${index + 15}/200/300`;
+  const LARGE_IMAGE = `https://picsum.photos/id/${index + 87}/200/300`;
+
+  const [expanded, setExpanded] = useState(false);
+  const heightAnim = useRef(new Animated.Value(320)).current;
+  const opacityAnim = useRef(new Animated.Value(0)).current;
+
+  const toggleExpand = () => {
+    setExpanded(!expanded);
+    Animated.timing(heightAnim, {
+      toValue: expanded ? 320 : 500,
+      duration: 300,
+      useNativeDriver: false,
+      easing: Easing.inOut(Easing.ease),
+    }).start();
+
+    Animated.timing(opacityAnim, {
+      toValue: expanded ? 0 : 1,
+      duration: 300,
+      useNativeDriver: false,
+      easing: Easing.inOut(Easing.ease),
+    }).start();
+  };
 
   return (
     <View style={styles.mainContainer}>
       <View style={styles.profileImageContainer}>
         <Image source={{uri: SMALL_IMAGE}} style={styles.profileImage} />
-        <Text style={styles.userNameText}>John Patel</Text>
+        <Text style={styles.userNameText}>John Patel {index}</Text>
       </View>
 
       <View style={styles.container}>
         <View style={styles.imageContainerAndButton}>
           <Image source={{uri: LARGE_IMAGE}} style={styles.image} />
 
-          <TouchableOpacity style={styles.rightButton} />
+          <ButtonView onPress={toggleExpand} style={styles.rightButton} />
+          <Animated.View
+            style={[styles.additionalContent, {opacity: opacityAnim}]}>
+            {expanded && (
+              <View style={styles.boxesContainer}>
+                {Array.from({length: 12}, (_, i) => i).map((i: number) => (
+                  <ButtonView
+                    key={i}
+                    style={styles.box}
+                    onPress={() => console.log(i)}
+                  />
+                ))}
+              </View>
+            )}
+          </Animated.View>
 
           <View style={styles.textContainer}>
             <Text style={styles.messageText}>Last Message</Text>
@@ -45,7 +89,7 @@ const RenderHomeCard = ({index}: {index: number}) => {
   );
 };
 
-export default RenderHomeCard;
+export default memo(RenderHomeCard);
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -57,13 +101,15 @@ const styles = StyleSheet.create({
     height: 320,
     overflow: 'hidden',
     borderRadius: 60,
+    zIndex: 9999,
     backgroundColor: COLORS.LightPink,
   },
   image: {
     top: 0,
     width: '100%',
-    position: 'absolute',
     height: '100%',
+    aspectRatio: 16 / 9,
+    position: 'absolute',
   },
   imageContainerAndButton: {
     height: '80%',
@@ -125,6 +171,7 @@ const styles = StyleSheet.create({
     height: 24,
   },
   rightButton: {
+    zIndex: 99999,
     position: 'absolute',
     right: 0,
     top: '35%',
@@ -155,5 +202,37 @@ const styles = StyleSheet.create({
     fontSize: 14,
     color: COLORS.White,
     fontFamily: FONTS.Medium,
+  },
+
+  additionalContent: {
+    top: 10,
+    right: 30,
+    width: '80%',
+    zIndex: 99999,
+    paddingVertical: 20,
+    position: 'absolute',
+  },
+  boxesContainer: {
+    zIndex: 9999,
+    flexWrap: 'wrap',
+    flexDirection: 'row',
+    borderRadius: 10,
+    overflow: 'hidden',
+    alignItems: 'center',
+    backgroundColor: 'rgba(255,255,255,0.5)',
+    justifyContent: 'flex-end',
+  },
+  box: {
+    marginHorizontal: 12,
+    marginVertical: 10,
+    width: 50,
+    height: 50,
+    backgroundColor: COLORS.White,
+    borderRadius: 10,
+    shadowColor: COLORS.Black,
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.2,
+    shadowRadius: 2,
+    elevation: 5,
   },
 });

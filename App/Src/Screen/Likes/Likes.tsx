@@ -12,12 +12,10 @@ const Likes = () => {
       <HeaderView />
 
       <FlatList
-        windowSize={7}
         data={LikesData}
-        initialNumToRender={5}
-        maxToRenderPerBatch={5}
+        initialNumToRender={15}
+        maxToRenderPerBatch={15}
         style={styles.flatListStyle}
-        updateCellsBatchingPeriod={100}
         showsVerticalScrollIndicator={false}
         keyExtractor={index => index.toString()}
         contentContainerStyle={styles.flatListContainer}

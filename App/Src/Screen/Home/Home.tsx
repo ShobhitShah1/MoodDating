@@ -14,7 +14,7 @@ import HeaderView from './components/HeaderView';
 import RenderHomeCard from './components/RenderHomeCard';
 import RenderStoryView from './components/RenderStoryView';
 
-const data = Array.from({length: 250}, (_, i) => i);
+const data = Array.from({length: 50}, (_, i) => i);
 
 const Home = () => {
   return (
@@ -41,10 +41,10 @@ const Home = () => {
           />
           <FlatList
             data={data}
-            contentContainerStyle={{gap: 25}}
             style={{marginVertical: 35}}
-            renderItem={({index}) => <RenderHomeCard index={index} />}
+            contentContainerStyle={{gap: 25}}
             keyExtractor={(item, index) => index.toString()}
+            renderItem={({index}) => <RenderHomeCard index={index} />}
           />
         </View>
       </ScrollView>

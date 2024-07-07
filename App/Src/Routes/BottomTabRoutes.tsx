@@ -2,7 +2,7 @@ import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import React from 'react';
+import React, {useState} from 'react';
 import {Image, ImageSourcePropType, StyleSheet, View} from 'react-native';
 import {IconsPath} from '../Common/AssetsPath';
 import Cards from '../Screen/Cards/Cards';
@@ -12,6 +12,7 @@ import Profile from '../Screen/Profile/Profile';
 import {COLORS} from '../Theme/Theme';
 import {RootStackParamList} from '../Types/Interfaces';
 import Chat from '../Screen/Chat/Chat';
+import {SMALL_IMAGE} from '../Common/GlobalConfig';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
@@ -31,57 +32,70 @@ const SCREENS: ScreenConfig[] = [
   {name: 'Profile', component: Profile, icon: IconsPath.ic_home},
 ];
 
-const Icon: React.FC<{source: ImageSourcePropType; focused: boolean}> = ({
-  source,
-  focused,
-}) =>
+const Icon: React.FC<{
+  source: ImageSourcePropType;
+  focused: boolean;
+  customSource?: string;
+}> = ({source, focused, customSource}) =>
   focused ? (
     <View
-      style={[styles.iconContainer, focused && styles.iconContainerFocused]}>
+      style={[
+        styles.iconContainer,
+        focused && !customSource && styles.iconContainerFocused,
+      ]}>
       <Image
-        source={source}
         resizeMode="contain"
-        style={[styles.bottomIconStyle, styles.bottomIconStyleFocused]}
+        source={customSource ? {uri: customSource} : source}
+        style={[
+          customSource ? styles.bottomProfileStyle : styles.bottomIconStyle,
+        ]}
       />
     </View>
   ) : (
     <View style={[styles.iconContainer]}>
       <Image
-        source={source}
+        source={customSource ? {uri: customSource} : source}
         resizeMode="contain"
-        style={styles.bottomIconStyle}
+        style={[
+          customSource ? styles.bottomProfileStyle : styles.bottomIconStyle,
+        ]}
       />
     </View>
   );
 
 const getScreenOptions = (
   icon: ImageSourcePropType,
+  customSource?: string,
 ): BottomTabNavigationOptions => ({
-  tabBarIcon: ({focused}) => <Icon source={icon} focused={focused} />,
-  tabBarActiveTintColor: '#e91e63',
-  tabBarInactiveTintColor: '#666',
+  tabBarIcon: ({focused}) => {
+    return <Icon source={icon} focused={focused} customSource={customSource} />;
+  },
 });
 
-const BottomTabRoutes: React.FC = () => (
-  <Tab.Navigator
-    screenOptions={{
-      headerShown: false,
-      tabBarShowLabel: false,
-      tabBarStyle: styles.tabBarStyle,
-    }}>
-    {SCREENS.map(({name, component, icon}) => (
-      <Tab.Screen
-        key={name}
-        name={name}
-        component={component}
-        options={{
-          tabBarLabel: name,
-          ...getScreenOptions(icon),
-        }}
-      />
-    ))}
-  </Tab.Navigator>
-);
+const BottomTabRoutes: React.FC = () => {
+  const [profileImage, setProfileImage] = useState<string>(SMALL_IMAGE);
+
+  return (
+    <Tab.Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarShowLabel: false,
+        tabBarStyle: styles.tabBarStyle,
+      }}>
+      {SCREENS.map(({name, component, icon}) => (
+        <Tab.Screen
+          key={name}
+          name={name}
+          component={component}
+          options={{
+            tabBarLabel: name,
+            ...getScreenOptions(icon, name === 'Profile' ? profileImage : ''),
+          }}
+        />
+      ))}
+    </Tab.Navigator>
+  );
+};
 
 export default BottomTabRoutes;
 
@@ -106,7 +120,7 @@ const styles = StyleSheet.create({
   bottomIconStyle: {
     width: ICON_VIEW_SIZE / 2,
     height: ICON_VIEW_SIZE / 2,
-    tintColor: '#666',
+    tintColor: '#ffffff',
   },
   bottomIconStyleFocused: {
     tintColor: '#ffffff',
@@ -124,5 +138,12 @@ const styles = StyleSheet.create({
   },
   innerShadow: {
     borderRadius: 25,
+  },
+  bottomProfileStyle: {
+    width: 27,
+    height: 27,
+    overflow: 'hidden',
+    borderRadius: 500,
+    resizeMode: 'cover',
   },
 });

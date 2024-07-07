@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {FC} from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import Animated, {FadeIn} from 'react-native-reanimated';
 import {IconsPath} from '../../../Common/AssetsPath';
 import {COLORS, FONTS} from '../../../Theme/Theme';
 
@@ -10,7 +11,10 @@ let HEART_VIEW = 36;
 const RenderLikesData: FC<{index: number}> = ({index}) => {
   const LIKED_PROFILE = `https://picsum.photos/id/${index + 12}/1080/720`;
   return (
-    <View key={index} style={styles.container}>
+    <Animated.View
+      entering={FadeIn.duration(index * 100)}
+      key={index}
+      style={styles.container}>
       <View style={styles.topTitle}>
         <Text style={styles.matchedText}>You got a match</Text>
       </View>
@@ -38,7 +42,7 @@ const RenderLikesData: FC<{index: number}> = ({index}) => {
           <Text style={styles.buttonText}>Send message</Text>
         </Pressable>
       </View>
-    </View>
+    </Animated.View>
   );
 };
 

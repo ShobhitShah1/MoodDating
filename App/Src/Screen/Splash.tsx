@@ -17,7 +17,7 @@ const Splash = () => {
 
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('DrawerTab');
+      navigation.navigate('AuthStack');
     }, 2000);
   }, [navigation]);
 

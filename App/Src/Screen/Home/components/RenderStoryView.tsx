@@ -1,5 +1,5 @@
 import {Image, StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import React, {memo} from 'react';
 import {COLORS, FONTS} from '../../../Theme/Theme';
 
 const WIDTH = 70;
@@ -20,7 +20,7 @@ const RenderStoryView = ({index}: {index: number}) => {
   );
 };
 
-export default RenderStoryView;
+export default memo(RenderStoryView);
 
 const styles = StyleSheet.create({
   container: {

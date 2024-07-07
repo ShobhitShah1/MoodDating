@@ -1,12 +1,12 @@
-import React, {memo} from 'react';
+import React, {memo, useRef} from 'react';
 import {
   Dimensions,
   FlatList,
   Image,
-  ScrollView,
   StyleSheet,
   Text,
   View,
+  Animated as ReactAnimated,
 } from 'react-native';
 import Animated, {FadeIn} from 'react-native-reanimated';
 import {IconsPath} from '../../Common/AssetsPath';
@@ -15,6 +15,7 @@ import CommonHeaderView from '../../Components/CommonHeaderView';
 import ScreenWrapper from '../../Components/ScreenWrapper';
 import {COLORS, FONTS} from '../../Theme/Theme';
 import RenderUserImagesView from './Components/RenderUserImagesView';
+import Paginator from '../../Components/Paginator';
 
 const {height} = Dimensions.get('window');
 
@@ -58,6 +59,8 @@ const interests = [
 ];
 
 const UserCardDetail = () => {
+  const scrollX = useRef(new ReactAnimated.Value(0)).current;
+
   return (
     <ScreenWrapper containerStyle={styles.containerStyle}>
       <View style={styles.headerContainer}>
@@ -84,7 +87,16 @@ const UserCardDetail = () => {
             renderItem={({item, index}) => {
               return <RenderUserImagesView item={item} index={index} />;
             }}
+            onScroll={ReactAnimated.event(
+              [{nativeEvent: {contentOffset: {x: scrollX}}}],
+              {
+                useNativeDriver: false,
+              },
+            )}
           />
+          {imageArray && imageArray?.length !== 0 && (
+            <Paginator data={imageArray} scrollX={scrollX} />
+          )}
         </Animated.View>
 
         <Animated.View
@@ -205,7 +217,9 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     height: height * 0.86,
   },
-  scrollViewContainContainer: {},
+  scrollViewContainContainer: {
+    width: '100%',
+  },
   flatListStyle: {
     width: '100%',
   },
