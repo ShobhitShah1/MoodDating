@@ -6,6 +6,7 @@ import ButtonView from '../../Common/ButtonView';
 import TextString from '../../Common/TestString';
 import useCustomNavigation from '../../Routes/Helpers/useCustomNavigation';
 import styles from './Styles';
+import LinearGradient from 'react-native-linear-gradient';
 
 const Welcome = () => {
   const navigation = useCustomNavigation();
@@ -17,6 +18,12 @@ const Welcome = () => {
         barStyle="light-content"
         backgroundColor="transparent"
         translucent
+      />
+      <LinearGradient
+        style={{position: 'absolute', bottom: 0, height: '100%', width: '100%'}}
+        start={{x: 0, y: 1}}
+        end={{x: 0, y: 0}}
+        colors={['rgba(0,0,0,1)', 'rgba(0,0,0,0.2)']}
       />
       <View style={styles.backgroundColor}>
         <View style={styles.contentView}>

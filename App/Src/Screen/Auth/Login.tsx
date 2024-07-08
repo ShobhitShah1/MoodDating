@@ -32,6 +32,7 @@ const Login = () => {
         blurRadius={5}
         style={{flex: 1}}
         source={ImagesPath.LoginBackground}>
+        <View style={styles.blackOverly} />
         <TouchableWithoutFeedback
           onPress={() => Keyboard.dismiss()}
           style={{
@@ -44,6 +45,7 @@ const Login = () => {
               justifyContent: 'flex-end',
               backgroundColor: 'rgba(255, 255, 255, 0.1)',
             }}
+            keyboardShouldPersistTaps="handled"
             showsVerticalScrollIndicator={false}
             bounces={false}>
             <View style={styles.NumberContentView}>

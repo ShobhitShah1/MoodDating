@@ -81,14 +81,6 @@ const AnimatedList: React.FC = () => {
     }, 100);
   };
 
-  const animatedScroll = (index: number) => {
-    flatListRef.current?.scrollToIndex({
-      index,
-      animated: true,
-      viewPosition: 0.5,
-    });
-  };
-
   const handleMomentumScrollEnd = useCallback(
     (event: NativeSyntheticEvent<NativeScrollEvent>) => {
       const index = Math.round(
@@ -115,10 +107,7 @@ const AnimatedList: React.FC = () => {
       });
 
       return (
-        <ButtonView
-          activeOpacity={1}
-          // onPress={() => animatedScroll(index)}
-        >
+        <ButtonView activeOpacity={1} onPress={() => {}}>
           <Animated.View
             style={[
               styles.item,
@@ -134,15 +123,16 @@ const AnimatedList: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <StatusBar
-        barStyle="dark-content"
-        backgroundColor="transparent"
-        translucent
-      />
       <ImageBackground
         style={styles.imageBackground}
         blurRadius={50}
         source={ImagesPath.SplashBackground}>
+        <StatusBar
+          translucent={true}
+          barStyle="dark-content"
+          // backgroundColor={'rgba(0,0,0,1)'}
+        />
+        <View style={styles.blackOverly} />
         <View style={styles.headerContainer}>
           <ButtonView
             ContainerStyle={styles.headerBackButtonView}
@@ -197,7 +187,7 @@ const AnimatedList: React.FC = () => {
             <ButtonView
               title={TextString.Continue}
               ContainerStyle={[styles.ButtonStyle, {}]}
-              onPress={() => navigation.navigate('BottomTab')}
+              onPress={() => navigation.navigate('DrawerTab')}
               TextStyle={styles.ButtonTextStyle}
             />
           </View>
@@ -223,6 +213,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.White,
+  },
+  blackOverly: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    backgroundColor: 'rgba(0,0,0,0.3)',
   },
   imageBackground: {
     flex: 1,

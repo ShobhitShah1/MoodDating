@@ -1,5 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native';
-import {COLORS, SIZE} from '../../Theme/Theme';
+import {COLORS, FONTS, SIZE} from '../../Theme/Theme';
 
 const {width} = Dimensions.get('window');
 
@@ -8,10 +8,18 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.White,
   },
+  blackOverly: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    position: 'absolute',
+    backgroundColor: 'rgba(0,0,0,0.65)',
+  },
   contentView: {
     flex: 1,
     width: '90%',
     alignSelf: 'center',
+    marginBottom: 50,
     justifyContent: 'flex-end',
   },
   LoginImageViewContainer: {
@@ -29,17 +37,17 @@ const styles = StyleSheet.create({
     color: COLORS.White,
   },
   HeartImageView: {
-    width: 35,
-    height: 35,
-    marginBottom: 10,
+    width: 40,
+    height: 40,
+    marginBottom: 15,
     resizeMode: 'cover',
   },
   loginToLovelyLifeText: {
-    color: COLORS.White,
-    fontSize: 25,
+    fontSize: 30,
+    lineHeight: 35,
     marginBottom: 10,
-    lineHeight: 27,
     fontWeight: '700',
+    color: COLORS.White,
   },
   CoupleImageContainer: {
     width: '62%',
@@ -83,20 +91,23 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   CountryCodeText: {
-    fontSize: 14,
+    fontSize: 18,
     color: COLORS.White,
+    fontFamily: FONTS.SemiBold,
   },
   topTitleView: {
     marginVertical: 20,
   },
   TextInputStyle: {
-    fontSize: 14,
+    fontSize: 14.5,
     color: COLORS.White,
+    fontFamily: FONTS.Regular,
   },
   EnterNumberTitleText: {
     fontSize: 15,
     paddingBottom: 5,
     color: COLORS.White,
+    fontFamily: FONTS.Regular,
   },
   ButtonStyle: {
     width: '100%',
@@ -117,7 +128,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignSelf: 'center',
     alignItems: 'center',
-    paddingVertical: 10,
+    paddingVertical: 25,
   },
   OrLineView: {
     width: '43%',
@@ -126,9 +137,10 @@ const styles = StyleSheet.create({
     borderTopColor: '#D9D3D3',
   },
   OrText: {
-    fontSize: 15,
-    marginHorizontal: 10,
+    fontSize: 17,
     color: COLORS.White,
+    marginHorizontal: 10,
+    fontFamily: FONTS.Medium,
   },
   SocialButtonContainer: {
     width: '100%',
@@ -156,14 +168,16 @@ const styles = StyleSheet.create({
   PoliciesAndTermsView: {
     width: '90%',
     alignSelf: 'center',
-    paddingVertical: 15,
+    paddingVertical: 25,
     alignItems: 'center',
     justifyContent: 'center',
   },
   PoliciesAndTermsText: {
-    lineHeight: 19.4,
+    fontSize: 15.5,
+    lineHeight: 22,
     textAlign: 'center',
     color: COLORS.White,
+    fontFamily: FONTS.Regular,
   },
   LinksText: {
     fontWeight: 'bold',
@@ -182,21 +196,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   titleTextView: {
-    // marginTop: 3,
-    // marginBottom: 5,
+    marginBottom: 2,
   },
   titleText: {
     fontSize: 30,
-    fontWeight: '600',
     color: COLORS.White,
-  },
-  otpDescriptionView: {
-    // marginVertical: 10,
+    fontFamily: FONTS.Medium,
   },
   otpDescriptionText: {
     fontSize: 15,
-    fontWeight: '400',
-    color: COLORS.DarkGrey,
+    marginTop: 8,
+    color: 'rgba(255, 255, 255, 0.6)',
+    fontFamily: FONTS.Medium,
   },
   otpBoxContainer: {
     marginVertical: 25,
@@ -214,13 +225,13 @@ const styles = StyleSheet.create({
     borderColor: COLORS.Primary,
   },
   otpCellStyleFilled: {
-    backgroundColor: COLORS.Primary,
+    // backgroundColor: COLORS.Primary,
   },
   otpTextStyle: {
-    color: COLORS.White,
-    fontSize: 23,
+    fontSize: 25,
     textAlign: 'center',
-    fontWeight: '500',
+    color: COLORS.Primary,
+    fontFamily: FONTS.SemiBold,
   },
   bottomTextView: {
     alignSelf: 'center',
@@ -229,12 +240,17 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: COLORS.White,
     marginVertical: 2,
-    fontSize: 15,
+    fontSize: 16,
+    fontFamily: FONTS.Medium,
   },
   resendOTPtext: {
-    fontSize: 13,
+    fontSize: 15,
     textAlign: 'center',
     color: COLORS.Primary,
+    fontFamily: FONTS.Medium,
+  },
+  otpBottomContainer: {
+    marginBottom: 20,
   },
 
   // Welcome
@@ -254,15 +270,15 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: COLORS.White,
     marginVertical: 15,
-    fontWeight: '500',
+    fontFamily: FONTS.SemiBold,
   },
   welcomeDescriptionText: {
     width: '70%',
     fontSize: 28,
-    color: COLORS.White,
-    marginVertical: 10,
-    fontWeight: 'bold',
     lineHeight: 37,
+    marginVertical: 10,
+    color: COLORS.White,
+    fontFamily: FONTS.SemiBold,
   },
   backgroundColor: {
     flex: 1,
@@ -273,14 +289,13 @@ const styles = StyleSheet.create({
   headerContainer: {
     width: '100%',
     height: 50,
-    marginTop: 10,
+    marginTop: 25,
     marginBottom: 5,
     justifyContent: 'center',
   },
   headerBackButtonView: {
     width: '10%',
     height: 50,
-    // alignItems: 'center',
     justifyContent: 'center',
   },
   headerBackIcon: {

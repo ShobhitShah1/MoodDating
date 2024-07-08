@@ -81,7 +81,8 @@ const BottomTabRoutes: React.FC = () => {
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: styles.tabBarStyle,
-      }}>
+      }}
+      backBehavior="history">
       {SCREENS.map(({name, component, icon}) => (
         <Tab.Screen
           key={name}

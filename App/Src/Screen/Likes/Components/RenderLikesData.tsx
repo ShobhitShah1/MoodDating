@@ -1,7 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {FC} from 'react';
+import React, {FC, memo, useState} from 'react';
 import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import Animated, {FadeIn} from 'react-native-reanimated';
+import Skeleton from 'react-native-reanimated-skeleton';
 import {IconsPath} from '../../../Common/AssetsPath';
 import {COLORS, FONTS} from '../../../Theme/Theme';
 
@@ -10,11 +11,15 @@ let HEART_VIEW = 36;
 
 const RenderLikesData: FC<{index: number}> = ({index}) => {
   const LIKED_PROFILE = `https://picsum.photos/id/${index + 12}/1080/720`;
+  const MY_PROFILE = 'https://picsum.photos/id/80/1080/720';
+
+  const [isImagesLoading, setIsImagesLoading] = useState({
+    isMyImageLoading: false,
+    isMatchedUserImageLoading: false,
+  });
+
   return (
-    <Animated.View
-      entering={FadeIn.duration(index * 100)}
-      key={index}
-      style={styles.container}>
+    <Animated.View entering={FadeIn.duration(500)} style={styles.container}>
       <View style={styles.topTitle}>
         <Text style={styles.matchedText}>You got a match</Text>
       </View>
@@ -24,16 +29,51 @@ const RenderLikesData: FC<{index: number}> = ({index}) => {
             <View style={[styles.heartView, {top: -5, left: -20}]}>
               <Image source={IconsPath.ic_heart} style={styles.heartImage} />
             </View>
-            <Image
-              source={{uri: 'https://picsum.photos/id/80/1080/720'}}
-              style={styles.imageStyle}
-            />
+            <Skeleton
+              containerStyle={styles.imageContainerStyle}
+              isLoading={false}>
+              <Image
+                source={{uri: MY_PROFILE}}
+                onLoadStart={() => {
+                  setIsImagesLoading({
+                    ...isImagesLoading,
+                    isMyImageLoading: true,
+                  });
+                }}
+                onLoad={() => {
+                  setIsImagesLoading({
+                    ...isImagesLoading,
+                    isMyImageLoading: false,
+                  });
+                }}
+                style={styles.imageStyle}
+              />
+            </Skeleton>
           </View>
           <View style={{transform: [{rotate: '8deg'}]}}>
             <View style={[styles.heartView, {bottom: -5, right: -20}]}>
               <Image source={IconsPath.ic_heart} style={styles.heartImage} />
             </View>
-            <Image source={{uri: LIKED_PROFILE}} style={styles.imageStyle} />
+            <Skeleton
+              isLoading={false}
+              containerStyle={styles.imageContainerStyle}>
+              <Image
+                source={{uri: LIKED_PROFILE}}
+                onLoadStart={() => {
+                  setIsImagesLoading({
+                    ...isImagesLoading,
+                    isMatchedUserImageLoading: true,
+                  });
+                }}
+                onLoad={() => {
+                  setIsImagesLoading({
+                    ...isImagesLoading,
+                    isMatchedUserImageLoading: false,
+                  });
+                }}
+                style={styles.imageStyle}
+              />
+            </Skeleton>
           </View>
         </View>
       </View>
@@ -46,7 +86,7 @@ const RenderLikesData: FC<{index: number}> = ({index}) => {
   );
 };
 
-export default RenderLikesData;
+export default memo(RenderLikesData);
 
 const styles = StyleSheet.create({
   container: {
@@ -54,6 +94,7 @@ const styles = StyleSheet.create({
     height: HEIGHT,
     padding: 10,
     borderRadius: 20,
+    marginBottom: 25,
     backgroundColor: 'rgba(255, 255, 255, 0.08)',
   },
   topTitle: {
@@ -74,7 +115,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
   },
-  imageStyle: {
+  imageContainerStyle: {
     width: HEIGHT / 2.2,
     height: HEIGHT / 1.8,
     marginHorizontal: -15,
@@ -82,6 +123,12 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     overflow: 'hidden',
     borderColor: COLORS.White,
+  },
+  imageStyle: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'cover',
+    backgroundColor: COLORS.Primary,
   },
   bottomButtonView: {
     height: '12%',

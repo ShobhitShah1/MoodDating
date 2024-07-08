@@ -10,6 +10,7 @@ import {RootStackParamList, screenOptions} from '../Types/Interfaces';
 import DrawerTabRoutes from './DrawerTabRoutes';
 import {navigationRef} from './Helpers/NavigationRef';
 import UserCardDetail from '../Screen/Detail/UserCardDetail';
+import ChatRoom from '../Screen/Chat/ChatRoom';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
@@ -27,11 +28,15 @@ const AuthStack = () => {
 const Routes = () => {
   return (
     <NavigationContainer ref={navigationRef}>
-      <Stack.Navigator screenOptions={screenOptions}>
+      <Stack.Navigator
+        screenOptions={screenOptions}
+        // initialRouteName="DrawerTab"
+      >
         <Stack.Screen name="Splash" component={Splash} />
         <Stack.Screen name="AuthStack" component={AuthStack} />
         <Stack.Screen name="DrawerTab" component={DrawerTabRoutes} />
         <Stack.Screen name="UserCardDetail" component={UserCardDetail} />
+        <Stack.Screen name="ChatRoom" component={ChatRoom} />
       </Stack.Navigator>
     </NavigationContainer>
   );

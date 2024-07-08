@@ -26,12 +26,13 @@ const Otp = () => {
       <ImageBackground
         style={styles.Container}
         source={ImagesPath.SplashBackground}
-        blurRadius={80}>
+        blurRadius={30}>
         <StatusBar
           barStyle="light-content"
           backgroundColor="transparent"
           translucent
         />
+        <View style={styles.blackOverly} />
         <ScrollView
           bounces={false}
           nestedScrollEnabled={true}
@@ -52,13 +53,10 @@ const Otp = () => {
                 />
               </ButtonView>
             </View>
+
             <View style={styles.titleTextView}>
               <Text style={styles.titleText}>Phone Verification</Text>
-            </View>
-            <View style={styles.otpDescriptionView}>
-              <Text style={styles.otpDescriptionText}>
-                Enter your OTP code here
-              </Text>
+              <Text style={styles.otpDescriptionText}>Enter OTP Code Here</Text>
             </View>
 
             <View style={styles.otpBoxContainer}>
@@ -77,7 +75,7 @@ const Otp = () => {
             </View>
           </View>
 
-          <View>
+          <View style={styles.otpBottomContainer}>
             <View style={styles.bottomTextView}>
               <Text style={styles.donNotHaveCodeText}>
                 {TextString.NotReceivedCode}

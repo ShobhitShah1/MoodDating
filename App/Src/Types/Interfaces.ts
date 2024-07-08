@@ -35,6 +35,7 @@ export type RootStackParamList = {
   Chat: undefined;
   Profile: undefined;
   UserCardDetail: undefined;
+  ChatRoom: undefined;
 };
 
 export const screenOptions: NativeStackNavigationOptions = {
