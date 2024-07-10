@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import ScreenWrapper from '../../Components/ScreenWrapper';
 import Swiper from '../../Components/Swiper/Swiper';
 import useCustomNavigation from '../../Routes/Helpers/useCustomNavigation';
-import HeaderView from '../Home/components/HeaderView';
+import HeaderView from '../Home/Components/HeaderView';
 import RenderCards from './Components/RenderCards';
 
 const Cards = () => {

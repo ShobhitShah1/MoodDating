@@ -112,13 +112,13 @@ class Swiper extends Component {
   };
 
   getCardStyle = () => {
-    const {height, width} = Dimensions.get('window');
+    const {height: screenHeight, width: screenWidth} = Dimensions.get('window');
     const {cardVerticalMargin, cardHorizontalMargin, marginTop, marginBottom} =
       this.props;
 
-    const cardWidth = width - cardHorizontalMargin * 2;
+    const cardWidth = screenWidth - cardHorizontalMargin * 2;
     const cardHeight =
-      height - cardVerticalMargin * 2 - marginTop - marginBottom;
+      screenHeight - cardVerticalMargin * 2 - marginTop - marginBottom;
 
     return {
       top: cardVerticalMargin,
@@ -129,7 +129,7 @@ class Swiper extends Component {
   };
 
   initializeCardStyle = () => {
-    // this.forceUpdate()
+    // this.forceUpdate();
     this.dimensionsChangeSubscription = Dimensions.addEventListener(
       'change',
       this.onDimensionsChange,

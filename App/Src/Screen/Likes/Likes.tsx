@@ -2,7 +2,7 @@ import {FlashList} from '@shopify/flash-list';
 import React, {useCallback, useMemo} from 'react';
 import {StyleSheet, View} from 'react-native';
 import ScreenWrapper from '../../Components/ScreenWrapper';
-import HeaderView from '../Home/components/HeaderView';
+import HeaderView from '../Home/Components/HeaderView';
 import RenderLikesData from './Components/RenderLikesData';
 
 const LikesData = Array.from({length: 100}, (_, i) => i);

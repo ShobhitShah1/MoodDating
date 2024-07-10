@@ -2,15 +2,22 @@ import React, {memo} from 'react';
 import {
   Dimensions,
   ImageBackground,
-  SafeAreaView,
   StatusBar,
   StyleSheet,
   View,
   ViewStyle,
 } from 'react-native';
 import {ImagesPath} from '../Common/AssetsPath';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const {width, height} = Dimensions.get('window');
+
+export const blackView: ViewStyle = {
+  width: width,
+  height: height + 50,
+  position: 'absolute',
+  backgroundColor: 'rgba(0,0,0,0.6)',
+};
 
 const ScreenWrapper: React.FC<{
   children: React.ReactNode;
@@ -40,7 +47,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingVertical: 10,
-    backgroundColor: '#F8EBEE',
+    // backgroundColor: '#F8EBEE',
   },
   contentView: {
     width: '90%',

@@ -1,17 +1,8 @@
 import React, {memo, useRef, useState} from 'react';
-import {
-  Animated,
-  Easing,
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import {COLORS, FONTS} from '../../../Theme/Theme';
-import ButtonView from '../../../Common/ButtonView';
+import {Animated, Easing, Image, StyleSheet, Text, View} from 'react-native';
 import {IconsPath} from '../../../Common/AssetsPath';
-import {BlurView} from '@react-native-community/blur';
+import ButtonView from '../../../Common/ButtonView';
+import {COLORS, FONTS} from '../../../Theme/Theme';
 
 const RenderHomeCard = ({index}: {index: number}) => {
   const SMALL_IMAGE = `https://picsum.photos/id/${index + 21}/200/400`;
@@ -94,6 +85,7 @@ export default memo(RenderHomeCard);
 const styles = StyleSheet.create({
   mainContainer: {
     marginTop: 35,
+    marginBottom: 25,
   },
   container: {
     flex: 1,

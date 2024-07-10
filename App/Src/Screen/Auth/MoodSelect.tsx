@@ -130,7 +130,7 @@ const AnimatedList: React.FC = () => {
         <StatusBar
           translucent={true}
           barStyle="dark-content"
-          // backgroundColor={'rgba(0,0,0,1)'}
+          backgroundColor={'transparent'}
         />
         <View style={styles.blackOverly} />
         <View style={styles.headerContainer}>

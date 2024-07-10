@@ -1,22 +1,24 @@
-/* eslint-disable react-native/no-inline-styles */
-import React from 'react';
-import {
-  FlatList,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import {FlashList} from '@shopify/flash-list';
+import React, {useCallback} from 'react';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import ScreenWrapper from '../../Components/ScreenWrapper';
 import {COLORS, FONTS} from '../../Theme/Theme';
-import HeaderView from './components/HeaderView';
-import RenderHomeCard from './components/RenderHomeCard';
-import RenderStoryView from './components/RenderStoryView';
+import HeaderView from './Components/HeaderView';
+import RenderHomeCard from './Components/RenderHomeCard';
+import RenderStoryView from './Components/RenderStoryView';
 
 const data = Array.from({length: 50}, (_, i) => i);
 
 const Home = () => {
+  const renderStory = useCallback(
+    ({index}: {index: number}) => <RenderStoryView index={index} />,
+    [],
+  );
+  const renderCards = useCallback(
+    ({index}: {index: number}) => <RenderHomeCard index={index} />,
+    [],
+  );
+
   return (
     <ScreenWrapper>
       <HeaderView />
@@ -31,21 +33,22 @@ const Home = () => {
         </View>
 
         <View style={styles.dataListContainer}>
-          <FlatList
+          <FlashList
             data={data}
             horizontal={true}
-            contentContainerStyle={{gap: 10}}
+            estimatedItemSize={150}
+            renderItem={renderStory}
             showsHorizontalScrollIndicator={false}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({index}) => <RenderStoryView index={index} />}
+            keyExtractor={index => index.toString()}
           />
-          <FlatList
-            data={data}
-            style={{marginVertical: 35}}
-            contentContainerStyle={{gap: 25}}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({index}) => <RenderHomeCard index={index} />}
-          />
+          <View style={styles.cardContainer}>
+            <FlashList
+              data={data}
+              estimatedItemSize={200}
+              renderItem={renderCards}
+              keyExtractor={index => index.toString()}
+            />
+          </View>
         </View>
       </ScrollView>
     </ScreenWrapper>
@@ -55,16 +58,6 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingVertical: 10,
-    backgroundColor: '#F8EBEE',
-  },
-  contentView: {
-    width: '90%',
-    alignSelf: 'center',
-    marginTop: StatusBar.currentHeight,
-  },
   matchesShowContainerView: {
     marginVertical: 20,
     paddingBottom: 150,
@@ -79,5 +72,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginBottom: 80,
     overflow: 'visible',
+  },
+  cardContainer: {
+    marginVertical: 35,
   },
 });
