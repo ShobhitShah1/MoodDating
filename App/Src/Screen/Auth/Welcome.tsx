@@ -20,10 +20,10 @@ const Welcome = () => {
         translucent
       />
       <LinearGradient
-        style={{position: 'absolute', bottom: 0, height: '100%', width: '100%'}}
-        start={{x: 0, y: 1}}
         end={{x: 0, y: 0}}
-        colors={['rgba(0,0,0,1)', 'rgba(0,0,0,0.2)']}
+        start={{x: 0, y: 1}}
+        style={{position: 'absolute', bottom: 0, height: '100%', width: '100%'}}
+        colors={['rgba(0,0,0,1)', 'rgba(0,0,0,0.5)', 'rgba(0,0,0,0.2)']}
       />
       <View style={styles.backgroundColor}>
         <View style={styles.contentView}>

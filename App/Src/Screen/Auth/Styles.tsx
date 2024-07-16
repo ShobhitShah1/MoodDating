@@ -267,10 +267,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   welcomeTitleText: {
-    fontSize: 16,
+    fontSize: 17.5,
     color: COLORS.White,
     marginVertical: 15,
-    fontFamily: FONTS.SemiBold,
+    fontFamily: FONTS.Medium,
   },
   welcomeDescriptionText: {
     width: '70%',

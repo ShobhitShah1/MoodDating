@@ -1,4 +1,3 @@
-/* eslint-disable react-native/no-inline-styles */
 import React, {useCallback, useState} from 'react';
 import {
   ImageBackground,
@@ -14,29 +13,16 @@ import {
   IMessage,
   InputToolbar,
   InputToolbarProps,
-} from 'react-native-gifted-chat/src';
-import {ImagesPath} from '../../Common/AssetsPath';
-import {blackView} from '../../Components/ScreenWrapper';
-import RenderChatHeader from './Components/RenderChatHeader';
-import {SMALL_IMAGE} from '../../Common/GlobalConfig';
+} from 'react-native-gifted-chat';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {ImagesPath} from '../../Common/AssetsPath';
+import {SMALL_IMAGE} from '../../Common/GlobalConfig';
+import {blackView} from '../../Components/ScreenWrapper';
 import {COLORS, FONTS} from '../../Theme/Theme';
+import RenderChatHeader from './Components/RenderChatHeader';
 
 const MessengerBarContainer = (props: InputToolbarProps<IMessage>) => {
-  return (
-    <InputToolbar
-      {...props}
-      containerStyle={{
-        backgroundColor: COLORS.White,
-        alignContent: 'center',
-        justifyContent: 'center',
-        borderWidth: 0,
-        paddingTop: 6,
-        marginHorizontal: 6,
-        borderTopColor: 'transparent',
-      }}
-    />
-  );
+  return <InputToolbar {...props} containerStyle={styles.inputBoxContainer} />;
 };
 
 const renderBubble = (props: Bubble<IMessage>['props']) => {
@@ -49,7 +35,7 @@ const renderBubble = (props: Bubble<IMessage>['props']) => {
     backgroundColor: 'rgba(255, 65, 101, 1)',
     padding: 10,
     marginTop: 10,
-    marginBottom: 5,
+    marginBottom: 15,
     paddingHorizontal: 20,
   };
 
@@ -125,5 +111,13 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     height: '100%',
+  },
+  inputBoxContainer: {
+    borderWidth: 0,
+    paddingVertical: 5,
+    alignContent: 'center',
+    justifyContent: 'center',
+    borderTopColor: 'transparent',
+    backgroundColor: COLORS.White,
   },
 });

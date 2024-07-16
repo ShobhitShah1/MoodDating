@@ -5,12 +5,12 @@ import Login from '../Screen/Auth/Login';
 import MoodSelect from '../Screen/Auth/MoodSelect';
 import Otp from '../Screen/Auth/Otp';
 import Welcome from '../Screen/Auth/Welcome';
+import ChatRoom from '../Screen/Chat/ChatRoom';
+import UserCardDetail from '../Screen/Detail/UserCardDetail';
 import Splash from '../Screen/Splash';
 import {RootStackParamList, screenOptions} from '../Types/Interfaces';
 import DrawerTabRoutes from './DrawerTabRoutes';
 import {navigationRef} from './Helpers/NavigationRef';
-import UserCardDetail from '../Screen/Detail/UserCardDetail';
-import ChatRoom from '../Screen/Chat/ChatRoom';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
