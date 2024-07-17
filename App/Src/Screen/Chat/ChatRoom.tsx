@@ -32,11 +32,11 @@ const renderBubble = (props: Bubble<IMessage>['props']) => {
     fontFamily: FONTS.Medium,
   };
   const wrapperStyle: ViewStyle = {
-    backgroundColor: 'rgba(255, 65, 101, 1)',
     padding: 10,
     marginTop: 10,
-    marginBottom: 15,
+    marginBottom: 10,
     paddingHorizontal: 20,
+    backgroundColor: 'rgba(255, 65, 101, 1)',
   };
 
   return (
@@ -47,15 +47,15 @@ const renderBubble = (props: Bubble<IMessage>['props']) => {
         left: {
           ...wrapperStyle,
           borderTopLeftRadius: 35,
-          borderTopRightRadius: 20,
-          borderBottomRightRadius: 20,
+          borderTopRightRadius: 50,
+          borderBottomRightRadius: 50,
           borderBottomLeftRadius: 0,
         },
         right: {
           ...wrapperStyle,
           borderTopRightRadius: 35,
-          borderTopLeftRadius: 20,
-          borderBottomLeftRadius: 20,
+          borderTopLeftRadius: 50,
+          borderBottomLeftRadius: 50,
           borderBottomRightRadius: 0,
         },
       }}
@@ -94,10 +94,11 @@ const ChatRoom = () => {
 
         <GiftedChat
           user={{_id: 1}}
+          alignTop={true}
           messages={messages}
           renderTime={() => null}
-          renderInputToolbar={props => MessengerBarContainer(props)}
           renderBubble={props => renderBubble(props)}
+          renderInputToolbar={props => MessengerBarContainer(props)}
           onSend={(messageSendData: IMessage[]) => onSend(messageSendData)}
         />
       </SafeAreaView>
@@ -114,7 +115,7 @@ const styles = StyleSheet.create({
   },
   inputBoxContainer: {
     borderWidth: 0,
-    paddingVertical: 5,
+    paddingVertical: 4,
     alignContent: 'center',
     justifyContent: 'center',
     borderTopColor: 'transparent',

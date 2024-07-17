@@ -2,17 +2,17 @@ import {
   BottomTabNavigationOptions,
   createBottomTabNavigator,
 } from '@react-navigation/bottom-tabs';
-import React, {useState} from 'react';
+import React from 'react';
 import {Image, ImageSourcePropType, StyleSheet, View} from 'react-native';
 import {IconsPath} from '../Common/AssetsPath';
+import {SMALL_IMAGE} from '../Common/GlobalConfig';
 import Cards from '../Screen/Cards/Cards';
+import Chat from '../Screen/Chat/Chat';
 import Home from '../Screen/Home/Home';
 import Likes from '../Screen/Likes/Likes';
 import Profile from '../Screen/Profile/Profile';
 import {COLORS} from '../Theme/Theme';
 import {RootStackParamList} from '../Types/Interfaces';
-import Chat from '../Screen/Chat/Chat';
-import {SMALL_IMAGE} from '../Common/GlobalConfig';
 
 const Tab = createBottomTabNavigator<RootStackParamList>();
 
@@ -73,14 +73,13 @@ const getScreenOptions = (
 });
 
 const BottomTabRoutes: React.FC = () => {
-  const [profileImage, setProfileImage] = useState<string>(SMALL_IMAGE);
-
   return (
     <Tab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarShowLabel: false,
         tabBarStyle: styles.tabBarStyle,
+        tabBarHideOnKeyboard: true,
       }}
       backBehavior="history">
       {SCREENS.map(({name, component, icon}) => (
@@ -90,7 +89,7 @@ const BottomTabRoutes: React.FC = () => {
           component={component}
           options={{
             tabBarLabel: name,
-            ...getScreenOptions(icon, name === 'Profile' ? profileImage : ''),
+            ...getScreenOptions(icon, name === 'Profile' ? SMALL_IMAGE : ''),
           }}
         />
       ))}

@@ -5,6 +5,7 @@ export const ImagesPath = {
   LoginBackground: require('../../Assets/Images/LoginBackground.jpg'),
   SplashBackground: require('../../Assets/Images/SplashBackground.jpg'),
   WelcomeBackground: require('../../Assets/Images/WelcomeBackground.jpg'),
+  ProfileBackground: require('../../Assets/Images/ProfileBackground.png'),
 };
 
 export const IconsPath = {
@@ -38,6 +39,8 @@ export const IconsPath = {
   ic_heart_fill: require('../../Assets/Icons/ic_heart_fill.png'),
   ic_heart_without_fill: require('../../Assets/Icons/ic_heart_without_fill.png'),
   ic_leftArrow: require('../../Assets/Icons/ic_leftArrow.png'),
+  ic_LightBack: require('../../Assets/Icons/ic_LightBack.png'),
+  ic_Edit: require('../../Assets/Icons/ic_Edit.png'),
 
   // Social
   ic_social_facebook: require('../../Assets/Icons/ic_social_facebook.png'),

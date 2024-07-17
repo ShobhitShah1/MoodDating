@@ -4,12 +4,16 @@ import ButtonView from '../../../Common/ButtonView';
 import {LARGE_IMAGE} from '../../../Common/GlobalConfig';
 import {IconsPath} from '../../../Common/AssetsPath';
 import {COLORS, FONTS} from '../../../Theme/Theme';
+import useCustomNavigation from '../../../Routes/Helpers/useCustomNavigation';
 
 const RenderChatHeader = () => {
+  const navigation = useCustomNavigation();
   return (
     <View style={styles.headerContainer}>
       <View style={styles.backAndProfileContainer}>
-        <Image source={IconsPath.ic_back} style={styles.backIcon} />
+        <ButtonView onPress={() => navigation.goBack()}>
+          <Image source={IconsPath.ic_LightBack} style={styles.backIcon} />
+        </ButtonView>
 
         <View style={styles.profileAndNameContainer}>
           <View style={styles.profileContainer}>
@@ -24,13 +28,13 @@ const RenderChatHeader = () => {
 
       <View style={styles.topBarIconsContainer}>
         <ButtonView style={styles.buttonContainer} onPress={() => {}}>
-          <Image style={styles.buttonIcon} source={IconsPath.ic_videoCall} />
+          <Image style={styles.buttonIcon} source={IconsPath.ic_mdi_invite} />
         </ButtonView>
         <ButtonView style={styles.buttonContainer} onPress={() => {}}>
           <Image style={styles.buttonIcon} source={IconsPath.ic_videoCall} />
         </ButtonView>
         <ButtonView style={styles.buttonContainer} onPress={() => {}}>
-          <Image style={styles.buttonIcon} source={IconsPath.ic_videoCall} />
+          <Image style={styles.buttonIcon} source={IconsPath.ic_call} />
         </ButtonView>
       </View>
     </View>
@@ -55,7 +59,9 @@ const styles = StyleSheet.create({
   },
   backIcon: {
     width: 20,
-    height: 20,
+    height: 25,
+    marginRight: 5,
+    resizeMode: 'contain',
     tintColor: COLORS.White,
   },
   profileAndNameContainer: {
@@ -91,8 +97,10 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-end',
   },
   buttonIcon: {
-    width: 35,
-    height: 35,
+    width: 27,
+    height: 27,
+    marginLeft: 5,
+    resizeMode: 'contain',
   },
   activeGreenDot: {
     width: 10,
