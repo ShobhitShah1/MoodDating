@@ -4,7 +4,7 @@ import ButtonView from '../../../Common/ButtonView';
 import {LARGE_IMAGE} from '../../../Common/GlobalConfig';
 import {IconsPath} from '../../../Common/AssetsPath';
 import {COLORS, FONTS} from '../../../Theme/Theme';
-import useCustomNavigation from '../../../Routes/Helpers/useCustomNavigation';
+import useCustomNavigation from '../../../Helpers/useCustomNavigation';
 
 const RenderChatHeader = () => {
   const navigation = useCustomNavigation();

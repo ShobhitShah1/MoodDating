@@ -20,10 +20,10 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {IconsPath, ImagesPath} from '../../Common/AssetsPath';
 import ButtonView from '../../Common/ButtonView';
 import TextString from '../../Common/TestString';
-import useCustomNavigation from '../../Routes/Helpers/useCustomNavigation';
 import {moods} from '../../Store/Data/LocalData';
 import {COLORS, SIZE} from '../../Theme/Theme';
 import {MoodDataProps} from '../../Types/Interfaces';
+import useCustomNavigation from '../../Helpers/useCustomNavigation';
 
 const {width} = Dimensions.get('window');
 
@@ -122,14 +122,14 @@ const AnimatedList: React.FC = () => {
   );
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ImageBackground
-        style={styles.imageBackground}
-        blurRadius={50}
-        source={ImagesPath.SplashBackground}>
+    <ImageBackground
+      style={styles.imageBackground}
+      blurRadius={50}
+      source={ImagesPath.SplashBackground}>
+      <SafeAreaView style={styles.imageBackground}>
         <StatusBar
           translucent={true}
-          barStyle="dark-content"
+          barStyle="light-content"
           backgroundColor={'transparent'}
         />
         <View style={styles.blackOverly} />
@@ -204,8 +204,8 @@ const AnimatedList: React.FC = () => {
           ]}
           style={styles.gradient}
         />
-      </ImageBackground>
-    </SafeAreaView>
+      </SafeAreaView>
+    </ImageBackground>
   );
 };
 

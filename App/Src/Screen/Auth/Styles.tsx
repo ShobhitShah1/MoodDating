@@ -260,7 +260,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   welcomeBottomView: {
-    paddingBottom: 20,
     justifyContent: 'flex-end',
   },
   welcomeTextContainerView: {

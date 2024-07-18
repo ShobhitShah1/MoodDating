@@ -2,7 +2,7 @@ import React from 'react';
 import {Dimensions, Image, StyleSheet, View} from 'react-native';
 import {IconsPath} from '../Common/AssetsPath';
 import ButtonView from '../Common/ButtonView';
-import useCustomNavigation from '../Routes/Helpers/useCustomNavigation';
+import useCustomNavigation from '../Helpers/useCustomNavigation';
 
 const {height} = Dimensions.get('window');
 

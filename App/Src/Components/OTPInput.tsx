@@ -11,7 +11,6 @@ import {
   ViewStyle,
 } from 'react-native';
 
-// Define the props for the OTPInput component
 interface Props {
   value: string;
   codeLength?: number;
@@ -41,13 +40,11 @@ interface Props {
   onBlur?: () => void;
 }
 
-// Define the state for the OTPInput component
 interface State {
   maskDelay: boolean;
   focused: boolean;
 }
 
-// Default styles for the component
 const styles = StyleSheet.create({
   containerDefault: {},
   cellDefault: {
@@ -68,7 +65,6 @@ const styles = StyleSheet.create({
 });
 
 class OTPInput extends Component<Props, State> {
-  // Default props
   static defaultProps = {
     value: '',
     codeLength: 4,
@@ -91,7 +87,6 @@ class OTPInput extends Component<Props, State> {
     disableFullscreenUI: true,
   };
 
-  // Prop types for validation
   static propTypes = {
     value: PropTypes.string.isRequired,
     codeLength: PropTypes.number,
@@ -129,19 +124,14 @@ class OTPInput extends Component<Props, State> {
   private inputRef: RefObject<TextInput> = createRef();
   private maskTimeout: ReturnType<typeof setTimeout> = setTimeout(() => {}, 0);
 
-  // Clear timeout when component is unmounted
   componentWillUnmount() {
     clearTimeout(this.maskTimeout);
   }
 
-  // Focus the input field
   focus = () => this.inputRef.current?.focus();
-  // Blur the input field
   blur = () => this.inputRef.current?.blur();
-  // Clear the input field
   clear = () => this.inputRef.current?.clear();
 
-  // Handle code input
   private handleInputCode = (code: string) => {
     const {
       password,
@@ -152,22 +142,18 @@ class OTPInput extends Component<Props, State> {
       maskDelay = 200,
     } = this.props;
 
-    // Restrict to numbers if the prop is set
     if (this.props.restrictToNumbers) {
       code = (code.match(/[0-9]/g) || []).join('');
     }
 
-    // Call onChangeText prop if set
     if (onChangeText) {
       onChangeText(code);
     }
 
-    // Call onFulfill prop if the code length is fulfilled
     if (code.length === codeLength && onFulfill) {
       onFulfill(code);
     }
 
-    // Set delay mask if necessary
     const delayMask = Boolean(password && code.length > value.length);
     this.setState({maskDelay: delayMask});
 
@@ -179,7 +165,6 @@ class OTPInput extends Component<Props, State> {
     }
   };
 
-  // Handle key press events
   private handleKeyPress = (event: any) => {
     if (
       event.nativeEvent.key === 'Backspace' &&
@@ -190,7 +175,6 @@ class OTPInput extends Component<Props, State> {
     }
   };
 
-  // Handle focus events
   private handleFocus = () => {
     this.setState({focused: true});
     if (this.props.onFocus) {
@@ -198,7 +182,6 @@ class OTPInput extends Component<Props, State> {
     }
   };
 
-  // Handle blur events
   private handleBlur = () => {
     this.setState({focused: false});
     if (this.props.onBlur) {
@@ -206,7 +189,6 @@ class OTPInput extends Component<Props, State> {
     }
   };
 
-  // Render the OTP input component
   render() {
     const {
       value,

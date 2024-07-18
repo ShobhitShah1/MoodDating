@@ -13,9 +13,9 @@ import {IconsPath, ImagesPath} from '../../Common/AssetsPath';
 import ButtonView from '../../Common/ButtonView';
 import TextString from '../../Common/TestString';
 import OTPInput from '../../Components/OTPInput';
-import useCustomNavigation from '../../Routes/Helpers/useCustomNavigation';
 import styles from './Styles';
 import {COLORS} from '../../Theme/Theme';
+import useCustomNavigation from '../../Helpers/useCustomNavigation';
 
 const Otp = () => {
   const navigation = useCustomNavigation();

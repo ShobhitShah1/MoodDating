@@ -36,6 +36,7 @@ export type RootStackParamList = {
   Profile: undefined;
   UserCardDetail: undefined;
   ChatRoom: undefined;
+  Notification: undefined;
 };
 
 export const screenOptions: NativeStackNavigationOptions = {
@@ -67,8 +68,10 @@ export interface MoodDataProps {
 }
 
 export interface HeaderProps {
+  title?: string;
   onMenuPress?: () => void;
   onNotificationPress?: () => void;
+  showNotificationButton?: boolean;
 }
 export interface DrawerDataProps {
   id: number;

@@ -8,9 +8,9 @@ import {
   View,
 } from 'react-native';
 import {ImagesPath} from '../Common/AssetsPath';
-import useCustomNavigation from '../Routes/Helpers/useCustomNavigation';
 import {COLORS} from '../Theme/Theme';
 import {IMAGE_BLUR} from '../Common/GlobalConfig';
+import useCustomNavigation from '../Helpers/useCustomNavigation';
 
 const Splash = () => {
   const navigation = useCustomNavigation();
@@ -18,7 +18,7 @@ const Splash = () => {
   useEffect(() => {
     setTimeout(() => {
       navigation.navigate('AuthStack');
-    }, 2000);
+    }, 1000);
   }, [navigation]);
 
   return (

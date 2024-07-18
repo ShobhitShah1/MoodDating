@@ -4,9 +4,9 @@ import {ImageBackground, StatusBar, Text, View} from 'react-native';
 import {ImagesPath} from '../../Common/AssetsPath';
 import ButtonView from '../../Common/ButtonView';
 import TextString from '../../Common/TestString';
-import useCustomNavigation from '../../Routes/Helpers/useCustomNavigation';
 import styles from './Styles';
 import LinearGradient from 'react-native-linear-gradient';
+import useCustomNavigation from '../../Helpers/useCustomNavigation';
 
 const Welcome = () => {
   const navigation = useCustomNavigation();

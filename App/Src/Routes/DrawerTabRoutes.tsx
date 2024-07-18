@@ -4,8 +4,10 @@ import React from 'react';
 import BottomTabRoutes from './BottomTabRoutes';
 import CustomDrawerContent from './CustomDrawerContent';
 import {StyleSheet} from 'react-native';
+import Notification from '../Screen/Notification';
+import {RootStackParamList} from '../Types/Interfaces';
 
-const Drawer = createDrawerNavigator();
+const Drawer = createDrawerNavigator<RootStackParamList>();
 
 const DrawerTabRoutes = () => {
   return (
@@ -17,6 +19,7 @@ const DrawerTabRoutes = () => {
       }}
       drawerContent={props => <CustomDrawerContent {...props} />}>
       <Drawer.Screen name="BottomTab" component={BottomTabRoutes} />
+      <Drawer.Screen name="Notification" component={Notification} />
     </Drawer.Navigator>
   );
 };

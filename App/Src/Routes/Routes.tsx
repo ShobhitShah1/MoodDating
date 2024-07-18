@@ -10,7 +10,7 @@ import UserCardDetail from '../Screen/Detail/UserCardDetail';
 import Splash from '../Screen/Splash';
 import {RootStackParamList, screenOptions} from '../Types/Interfaces';
 import DrawerTabRoutes from './DrawerTabRoutes';
-import {navigationRef} from './Helpers/NavigationRef';
+import {navigationRef} from '../Helpers/NavigationRef';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 

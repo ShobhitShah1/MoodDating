@@ -2,9 +2,9 @@ import React, {useCallback, useMemo, useRef} from 'react';
 import {StyleSheet, View} from 'react-native';
 import ScreenWrapper from '../../Components/ScreenWrapper';
 import Swiper from '../../Components/Swiper/Swiper';
-import useCustomNavigation from '../../Routes/Helpers/useCustomNavigation';
 import HeaderView from '../Home/Components/HeaderView';
 import RenderCards from './Components/RenderCards';
+import useCustomNavigation from '../../Helpers/useCustomNavigation';
 
 const Cards = () => {
   const swiperRef = useRef<Swiper>(null);

@@ -2,8 +2,8 @@ import React from 'react';
 import {StyleSheet, Text} from 'react-native';
 import ButtonView from '../../Common/ButtonView';
 import ScreenWrapper from '../../Components/ScreenWrapper';
-import useCustomNavigation from '../../Routes/Helpers/useCustomNavigation';
 import {COLORS, FONTS} from '../../Theme/Theme';
+import useCustomNavigation from '../../Helpers/useCustomNavigation';
 
 const Chat = () => {
   const navigation = useCustomNavigation();
